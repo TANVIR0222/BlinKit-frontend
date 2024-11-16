@@ -69,4 +69,5 @@
 
 body{
   font-family: "Inter", system-ui;
+  @apply bg-blue-50
 }
