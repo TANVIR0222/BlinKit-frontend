@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-    s.jksbkj
+    hello server
     </>
   )
 }
