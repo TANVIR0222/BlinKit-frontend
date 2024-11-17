@@ -54,7 +54,15 @@ export default {
         "primary-100": "#ffc929",
         "secondary-200": "#00b050",
         "secondary-100": "#0b1a78",
+        secondary: "#43c2d1",
+
       },
+      "caret-blink": {
+        "0%,70%,100%": { opacity: "1" },
+        "20%,50%": { opacity: "0" },
+      },
+      "caret-blink": "caret-blink 1.25s ease-out infinite",
+
     },
   },
   plugins: [require("tailwindcss-animate")],
