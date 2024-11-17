@@ -14,7 +14,21 @@ export const authApi = createApi({
         body: newUser
       })
     }),
+    userLogin: builder.mutation({
+      query: (login) => ({
+        url:'login',
+        method:'POST',
+        body: login
+      })
+    }),
+    userForgotPassword: builder.mutation({
+      query: (forgotPassword) => ({
+        url:'forgot-password',
+        method:'PUT',
+        body: forgotPassword
+      })
+    }),
   }),
 })
 
-export const { useUserRegisterMutation } = authApi
+export const { useUserRegisterMutation , useUserLoginMutation , useUserForgotPasswordMutation} = authApi
