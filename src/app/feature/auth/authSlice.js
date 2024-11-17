@@ -5,9 +5,9 @@ const loadUserFormLocalStorage = () => {
     const serializedState = localStorage.getItem("user");
     if (serializedState === null) return { user: null };
 
-    return JSON.parse(serializedState)
+    return { user: JSON.parse(serializedState) };
   } catch (error) {
-    console.log(error);
+    return { user: null };
   }
 };
 
@@ -19,16 +19,18 @@ export const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload.user;
-      localStorage.setItem('user', JSON.stringify(state.user))
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
-    logout: (state) =>{
-        state.user = null;
-        localStorage.removeItem('user');
-    }
+    logout: (state) => {
+      state.user = null;
+      localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser , logout } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;
