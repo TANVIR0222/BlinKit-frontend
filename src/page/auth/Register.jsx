@@ -1,9 +1,8 @@
-import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
-import { Await, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useUserRegisterMutation } from "@/app/feature/auth/authApi";
 
@@ -17,6 +16,7 @@ const Register = () => {
     reset
   } = useForm();
   const navigate = useNavigate();
+  const [registerError, setError] = useState("");
 
   const [userRegister,{isLoading}] = useUserRegisterMutation();
 
@@ -42,7 +42,7 @@ const Register = () => {
         reset()
     }
     } catch (error) {
-      console.log(error);
+      setError(error.data.msg);
     }
   };
 
@@ -139,6 +139,7 @@ const Register = () => {
               </span>
             )}
           </div>
+          <p className="text-red-600 italic">{registerError}</p>
 
           <button
             className={`bg-slate-900 text-white py-2 rounded font-semibold my-3 tracking-wide`}
