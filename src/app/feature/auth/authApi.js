@@ -28,7 +28,15 @@ export const authApi = createApi({
         body: forgotPassword
       })
     }),
+    userForgotOTPVerify: builder.mutation({
+      query: (forgotOTP) => ({
+        url:'verify-forgoot-password-otp',
+        method:'PUT',
+        body: forgotOTP
+      })
+    }),
+    
   }),
 })
 
-export const { useUserRegisterMutation , useUserLoginMutation , useUserForgotPasswordMutation} = authApi
+export const { useUserRegisterMutation , useUserLoginMutation , useUserForgotPasswordMutation , useUserForgotOTPVerifyMutation } = authApi
