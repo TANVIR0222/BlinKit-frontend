@@ -5,6 +5,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/user/` }),
+  tagTypes: ["User"],
+
   endpoints: (builder) => ({
     userRegister: builder.mutation({
       query: (newUser) => ({
@@ -12,6 +14,8 @@ export const authApi = createApi({
         method: "POST",
         body: newUser,
       }),
+      
+      invalidatesTags: ["User"],
     }),
     userLogin: builder.mutation({
       query: (login) => ({
@@ -19,6 +23,8 @@ export const authApi = createApi({
         method: "POST",
         body: login,
       }),
+      invalidatesTags: ["User"],
+
     }),
     userForgotPassword: builder.mutation({
       query: (forgotPassword) => ({
@@ -26,6 +32,8 @@ export const authApi = createApi({
         method: "PUT",
         body: forgotPassword,
       }),
+      invalidatesTags: ["User"],
+
     }),
     userForgotOTPVerify: builder.mutation({
       query: (forgotOTP) => ({
@@ -33,6 +41,8 @@ export const authApi = createApi({
         method: "PUT",
         body: forgotOTP,
       }),
+      invalidatesTags: ["User"],
+
     }),
     userResetPassword: builder.mutation({
       query: (resetPass) => ({
@@ -40,9 +50,15 @@ export const authApi = createApi({
         method: "PUT",
         body: resetPass,
       }),
+      invalidatesTags: ["User"],
+
     }),
     userLogout: builder.mutation({
-      query: () => `logout`,
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
     }),
   }),
 });
