@@ -2,8 +2,13 @@ import Search from "@/components/common/Search";
 import { Link } from "react-router-dom";
 import { LuUserCircle } from "react-icons/lu";
 import { TiShoppingCart } from "react-icons/ti";
+import { useSelector } from "react-redux";
+import UserMenu from "@/components/common/UserMenu";
 
 const Header = () => {
+  const { user } = useSelector((state) => state.auth);
+  // console.log(user);
+
   return (
     <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
       <div className="container flex items-center justify-between  ">
@@ -25,12 +30,30 @@ const Header = () => {
         <div className="">
           {/* only show on mobile */}
           <button className="text-neutral-600 lg:hidden">
-            <LuUserCircle size={28} />
+            {user ? (
+              <div className="flex items-center gap-2 cursor-pointer">
+                <p>Account</p>
+                <UserMenu user={user} />
+              </div>
+            ) : (
+              <Link to="/login">
+                <LuUserCircle size={28} />
+              </Link>
+            )}
           </button>
 
           {/* only show on desktop */}
           <div className="hidden lg:flex items-center gap-5 ">
-            <Link to={'/Login'} className="text-lg px-2">Login</Link>
+            {user ? (
+              <div className="flex items-center gap-2 cursor-pointer">
+                <p>Account</p>
+                <UserMenu user={user} />
+              </div>
+            ) : (
+              <Link to={"/Login"} className="text-lg px-2">
+                Login
+              </Link>
+            )}
 
             <button className="flex items-center gap-2 bg-green-700 hover:bg-green-900 px-3 py-3 rounded-md text-white">
               {/*add to card icon */}
@@ -40,7 +63,6 @@ const Header = () => {
               {/* item  */}
               <div className=" font-semibold">
                 <p>My cart </p>
-               
               </div>
             </button>
           </div>
