@@ -7,7 +7,7 @@ function App() {
 
   const location = useLocation();
 
-  const path = location.pathname.includes('/login') ||  location.pathname.includes('/register')
+  const path = location.pathname.includes('/Login') ||  location.pathname.includes('/register')  || location.pathname.includes('/forgot-password')  || location.pathname.includes('/verification-opt') 
 
   return (
     <>
