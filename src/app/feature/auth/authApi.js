@@ -60,6 +60,14 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    userImageUpdate: builder.mutation({
+      query: ({id,formData}) => ({
+        url: `uploade-image/${id}`,
+        method: "PUT",
+        body: formData
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -70,4 +78,5 @@ export const {
   useUserForgotOTPVerifyMutation,
   useUserResetPasswordMutation,
   useUserLogoutMutation,
+  useUserImageUpdateMutation
 } = authApi;
