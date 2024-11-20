@@ -12,9 +12,15 @@ export const subCategoryApi = createApi({
             method: 'POST',
             body: newData,
         }),
-    })
+    }),
+    getAllSubCategory: builder.query({
+        query: () => ({
+            url: `all-sub-category`,
+            method: 'GET',
+        }),
+    }),
   }),
 })
 
 
-export const { useSubCategoryUploadeMutation } = subCategoryApi
+export const { useSubCategoryUploadeMutation , useGetAllSubCategoryQuery } = subCategoryApi
