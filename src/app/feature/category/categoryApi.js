@@ -18,8 +18,17 @@ export const categoryApi = createApi({
         query: () => `all-category`,
         providesTags: ['Category'],
     }),
+    updateCategory: builder.mutation({
+      query: (newPost) => ({
+        url: `update-category/${newPost.id}`,
+        method: 'PUT',
+        body: newPost,
+        }),
+        invalidatesTags: ['Category'],
+        }),
+
   }),
 })
 
 
-export const { useAddCategoryMutation , useGetAllCategoryQuery } = categoryApi
+export const { useAddCategoryMutation , useGetAllCategoryQuery , useUpdateCategoryMutation } = categoryApi
