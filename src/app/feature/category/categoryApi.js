@@ -1,34 +1,44 @@
-import baseUrl from '@/utils/baseUrl'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import baseUrl from "@/utils/baseUrl";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const categoryApi = createApi({
-  reducerPath: 'categoryApi',
+  reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/category/` }),
-  tagTypes: ['Category'],
+  tagTypes: ["Category"],
   endpoints: (builder) => ({
     addCategory: builder.mutation({
-        query: (newPost) => ({
-            url: `add-category`,
-            method: 'POST',
-            body: newPost,
-        }),
-        invalidatesTags: ['Category'],
+      query: (newPost) => ({
+        url: `add-category`,
+        method: "POST",
+        body: newPost,
+      }),
+      invalidatesTags: ["Category"],
     }),
     getAllCategory: builder.query({
-        query: () => `all-category`,
-        providesTags: ['Category'],
+      query: () => `all-category`,
+      providesTags: ["Category"],
     }),
     updateCategory: builder.mutation({
       query: (newPost) => ({
         url: `update-category/${newPost.id}`,
-        method: 'PUT',
+        method: "PUT",
         body: newPost,
-        }),
-        invalidatesTags: ['Category'],
-        }),
-
+      }),
+      invalidatesTags: ["Category"],
+    }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `delete-category/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Category"],
+    })
   }),
-})
+});
 
-
-export const { useAddCategoryMutation , useGetAllCategoryQuery , useUpdateCategoryMutation } = categoryApi
+export const {
+  useAddCategoryMutation,
+  useGetAllCategoryQuery,
+  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
+} = categoryApi;
