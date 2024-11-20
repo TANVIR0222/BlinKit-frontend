@@ -1,7 +1,6 @@
 
 const uploadImage = async (image, id,imageUploade) => {
     try {
-      console.log(image);
   
       const formData = new FormData();
       formData.append("image", image);
