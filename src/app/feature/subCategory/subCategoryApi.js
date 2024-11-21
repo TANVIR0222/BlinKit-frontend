@@ -5,6 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const subCategoryApi = createApi({
   reducerPath: 'subCategoryApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/subcategory/` }),
+  tagTypes: ['SubCategory'],
   endpoints: (builder) => ({
     subCategoryUploade: builder.mutation({
         query: (newData) => ({
@@ -12,10 +13,13 @@ export const subCategoryApi = createApi({
             method: 'POST',
             body: newData,
         }),
+        invalidatesTags: ['SubCategory'],
     }),
     getAllSubCategory: builder.query({
         query: () =>  `all-sub-category`,
+        providesTags:['SubCategory'],
     }),
+   
   }),
 })
 
