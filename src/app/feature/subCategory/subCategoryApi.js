@@ -21,14 +21,21 @@ export const subCategoryApi = createApi({
     }),
     updateSubCategory: builder.mutation({
       query: (newData) => ({
-        url: `update-sub-category`,
+        url: `update-sub-category/${newData.id}`,
         method: 'PUT',
         body: newData,
       }),
       invalidatesTags: ['SubCategory'],
-    })
+    }),
+    delateSubCategory : builder.mutation({
+      query: (id) => ({
+        url: `delete-sub-category/${id}`,
+        method: 'DELETE',
+      }),
+        invalidatesTags: ['SubCategory'],
+    }),
   }),
 })
 
 
-export const { useSubCategoryUploadeMutation , useGetAllSubCategoryQuery  , useUpdateSubCategoryMutation} = subCategoryApi
+export const { useSubCategoryUploadeMutation , useGetAllSubCategoryQuery  , useUpdateSubCategoryMutation , useDelateSubCategoryMutation } = subCategoryApi
