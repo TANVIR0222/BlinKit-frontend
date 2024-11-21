@@ -2,7 +2,7 @@ import { useGetAllCategoryQuery } from "@/app/feature/category/categoryApi";
 import UploadeCategoryModel from "./UploadeCategoryModel";
 import Loading from "@/components/common/Loading";
 import NoData from "@/components/common/NoData";
-import EditeCategory from "./EditeCategory ";
+import EditeCategory from "../../components/common/EditeCategory ";
 import DeleteProduct from "@/components/common/DeleteProduct";
 
 
