@@ -19,9 +19,16 @@ export const subCategoryApi = createApi({
         query: () =>  `all-sub-category`,
         providesTags:['SubCategory'],
     }),
-   
+    updateSubCategory: builder.mutation({
+      query: (newData) => ({
+        url: `update-sub-category`,
+        method: 'PUT',
+        body: newData,
+      }),
+      invalidatesTags: ['SubCategory'],
+    })
   }),
 })
 
 
-export const { useSubCategoryUploadeMutation , useGetAllSubCategoryQuery } = subCategoryApi
+export const { useSubCategoryUploadeMutation , useGetAllSubCategoryQuery  , useUpdateSubCategoryMutation} = subCategoryApi
