@@ -20,11 +20,11 @@ const UploadeCategoryModel = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const { user } = useSelector((state) => state.auth);
-  const [imageUploade, { isLoading:imageLoading }] = useImageUploadeMutation();
+  const [imageUploade, { isLoading: imageLoading }] = useImageUploadeMutation();
   const [addCategory, { isLoading }] = useAddCategoryMutation();
 
   const onSubmit = async (data) => {
@@ -39,14 +39,14 @@ const UploadeCategoryModel = () => {
       setImage(res.data.url);
 
       const category = {
-        name : data.categoryName,
+        name: data.categoryName,
         image: res.data.url,
-      }      
+      };
 
       const uploadeCategory = await addCategory(category).unwrap();
-      
-      if(uploadeCategory.success){
-        toast.success(' Categoy added successfully');
+
+      if (uploadeCategory.success) {
+        toast.success(" Categoy added successfully");
         reset();
       }
     } catch (error) {
@@ -73,6 +73,9 @@ const UploadeCategoryModel = () => {
                   {...register("categoryName", { required: true })}
                   className="bg-blue-50 p-2 border border-blue-100 focus-within:border-primary-200 outline-none rounded"
                 />
+                {errors.categoryName && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </div>
               <div className="grid gap-1">
                 <p>Image</p>
@@ -93,17 +96,24 @@ const UploadeCategoryModel = () => {
                       {imageLoading ? <p>Loading....</p> : "Upload Image"}
                     </div>
                     <input
-                      // onChange={handleUploadCategoryImage}
                       type="file"
                       id="uploadCategoryImage"
                       className="hidden"
                       {...register("uploadCategoryImage", { required: true })}
                     />
+                    {errors.uploadCategoryImage && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </label>
                 </div>
               </div>
 
-              <button className={`bg-secondary px-3 py-2 rounded `}> {isLoading ? <p>Loading....</p> : 'Add Category' } </button>
+              <button className={`bg-secondary px-3 py-2 rounded `}>
+                {" "}
+                {isLoading ? <p>Loading....</p> : "Add Category"}{" "}
+              </button>
             </form>
           </DialogHeader>
         </DialogContent>
