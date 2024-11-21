@@ -14,10 +14,7 @@ export const subCategoryApi = createApi({
         }),
     }),
     getAllSubCategory: builder.query({
-        query: () => ({
-            url: `all-sub-category`,
-            method: 'GET',
-        }),
+        query: () =>  `all-sub-category`,
     }),
   }),
 })
