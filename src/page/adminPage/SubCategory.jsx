@@ -31,12 +31,12 @@ const SubCategory = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="">#</TableHead>
-              <TableHead>Name</TableHead>
+              <TableHead>Sub Category</TableHead>
               <TableHead>Image</TableHead>
               {/* <TableHead  >ViewImage</TableHead> */}
               <TableHead>Category</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="text-right">Edite</TableHead>
+              <TableHead className="text-right">Delete</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -53,7 +53,6 @@ const SubCategory = () => {
                     alt=""
                   />
                 </TableCell>
-                {/* <TableCell className="">                  <ImageView image={item.image} />                </TableCell> */}
                 <TableCell className="md:font-medium text-sm">
                   {item.category}
                 </TableCell>

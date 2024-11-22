@@ -1,50 +1,44 @@
 import { useUserImageUpdateMutation } from "@/app/feature/auth/authApi";
-import { updateAvatar } from "@/app/feature/auth/authSlice";
 
 import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
-const UpdateProfile = ({  close }) => {
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-    }
+const UpdateProfile = ({ close }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-    const {user} = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   const [userImageUpdate, { isLoading: loading }] =
     useUserImageUpdateMutation();
 
-    const [file, setFile] = useState(null);
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
+  const [file, setFile] = useState(null);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleUploadAvatarImage = async (e) => {
-    const id = user._id
+    const id = user._id;
 
-    const file = e.target.files[0]
+    const file = e.target.files[0];
 
-        if(!file){
-            return
-        }
+    if (!file) {
+      return;
+    }
 
-        const formData = new FormData()
-        formData.append('avatar',file)
-    
+    const formData = new FormData();
+    formData.append("avatar", file);
+
     try {
-      const response = await userImageUpdate({id, formData}).unwrap();
-      console.log(response.data.avatar);
-      
-      dispatch(updateAvatar(response.data.avatar));
-
+      await userImageUpdate({ id, formData }).unwrap();
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   return (
@@ -58,7 +52,7 @@ const UpdateProfile = ({  close }) => {
         </button>
         <div className="w-20 h-20 bg-red-500 flex items-center justify-center rounded-full overflow-hidden drop-shadow-sm">
           {user ? (
-            <img   alt={user.name} src={user.avatar} className="w-full h-full" />
+            <img alt={user.name} src={user.avatar} className="w-full h-full" />
           ) : (
             <FaRegUserCircle size={65} />
           )}
@@ -71,7 +65,6 @@ const UpdateProfile = ({  close }) => {
             <input
               onChange={handleUploadAvatarImage}
               type="file"
-              
               id="uploadProfile"
               className="hidden"
             />

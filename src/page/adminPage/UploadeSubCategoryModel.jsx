@@ -70,7 +70,7 @@ const UploadeSubCategoryModel = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="grid gap-1">
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="name">Sub Category Name</label>
                   <input
                     id="name"
                     name="name"

@@ -61,7 +61,7 @@ const UserMenu = ({ user }) => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel className="text-xl">My Account </DropdownMenuLabel>
         <DropdownMenuLabel className=" flex items-center font-bold gap-3">
-          {user?.name}{" "}
+          {user?.name} {user.role === "ADMIN"  && '(Admin)'}{" "}
           <Link to={'dashboard/profile'}>
             <GoLinkExternal  className="text-blue-700 font-bold text-md" />
           </Link>{" "}

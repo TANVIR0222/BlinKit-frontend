@@ -1,5 +1,6 @@
 
 import App from '@/App';
+import AdminPermition from '@/Layout/AdminPermition';
 import Dashboard from '@/Layout/Dashboard';
 import Category from '@/page/adminPage/Category';
 import Product from '@/page/adminPage/Product';
@@ -69,19 +70,19 @@ export const router = createBrowserRouter([
             },
             {
               path: "category",
-              element: <Category />,
+              element: <AdminPermition><Category /></AdminPermition> ,
             },
             {
               path: "sub-category",
-              element: <SubCategory />,
+              element: <AdminPermition><SubCategory /></AdminPermition>,
             },
             {
               path: "uploade-product",
-              element: <UploadeProduct />,
+              element: <AdminPermition><UploadeProduct /></AdminPermition>,
             },
             {
               path: "product",
-              element: <Product />,
+              element: <AdminPermition><Product /></AdminPermition>,
             },
           ]
         },
