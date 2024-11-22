@@ -11,7 +11,7 @@ const ImageView = ({ image }) => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger><IoEyeOutline  size={20} className=" hover:text-secondary" /> </DialogTrigger>
+        <DialogTrigger className="w-fit" ><IoEyeOutline  size={16} className=" hover:text-black" /> </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <img className="p-4" src={image} alt="" />
