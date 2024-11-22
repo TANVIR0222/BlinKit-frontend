@@ -5,6 +5,7 @@ import  authReducer  from './feature/auth/authSlice'
 import { categoryApi } from './feature/category/categoryApi'
 import { imageApi } from './feature/uploadeImage/imageApi'
 import { subCategoryApi } from './feature/subCategory/subCategoryApi'
+import { productApi } from './feature/product/productApi'
 
 export const store = configureStore({
   reducer: {
@@ -13,10 +14,11 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [imageApi.reducerPath]: imageApi.reducer,
     [subCategoryApi.reducerPath]: subCategoryApi.reducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
   
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware,productApi.middleware),
 })
 
 setupListeners(store.dispatch)
