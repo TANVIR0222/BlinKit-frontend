@@ -25,7 +25,6 @@ const SubCategory = () => {
           </button>
         </div>
 
-      {isLoading && <div>Loading...</div>}
 
         <Table>
           <TableHeader>
@@ -39,6 +38,7 @@ const SubCategory = () => {
               <TableHead className="text-right">Delete</TableHead>
             </TableRow>
           </TableHeader>
+          {isLoading && <div className="text-rose-500">Loading...</div>}
           <TableBody>
             {data?.categorys.map((item, index) => (
               <TableRow className="gap-4 h-24 " key={item._id}>
