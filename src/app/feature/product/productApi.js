@@ -4,6 +4,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/product/` }),
+  tagTypes: ["Product"],
+
   endpoints: (builder) => ({
     productUploade: builder.mutation({
       query: (newData) => ({
@@ -11,10 +13,12 @@ export const productApi = createApi({
         method: 'POST',
         body:  newData
       }),
+      invalidatesTags:['Product']
     }),
     getProducts: builder.query({
       query: ({ page = 1, limit = 10, search = "" }) =>
        `all-product?page=${page}&limit=${limit}&search=${search}`,
+      providesTags:['Product']
     }),
     getProductByCategory: builder.mutation({
       query: (id) =>({
@@ -22,7 +26,7 @@ export const productApi = createApi({
         method: 'POST',
         body: id
       }),
-      invalidatesTags:['Product'],
+      invalidatesTags:['Product']
     }),
 
   }),
