@@ -6,10 +6,12 @@ import { categoryApi } from './feature/category/categoryApi'
 import { imageApi } from './feature/uploadeImage/imageApi'
 import { subCategoryApi } from './feature/subCategory/subCategoryApi'
 import { productApi } from './feature/product/productApi'
+import  productReducer  from './feature/product/productSlice'
 
 export const store = configureStore({
   reducer: {
     auth:  authReducer,
+    product: productReducer  ,
     [authApi.reducerPath]: authApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [imageApi.reducerPath]: imageApi.reducer,
