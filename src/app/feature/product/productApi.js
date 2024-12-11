@@ -16,8 +16,16 @@ export const productApi = createApi({
       query: ({ page = 1, limit = 10, search = "" }) =>
        `all-product?page=${page}&limit=${limit}&search=${search}`,
     }),
+    getProductByCategory: builder.mutation({
+      query: (id) =>({
+        url: `get-product-by-category`,
+        method: 'POST',
+        body: id
+      }),
+      invalidatesTags:['Product'],
+    }),
 
   }),
 })
 
-export const { useProductUploadeMutation , useGetProductsQuery } = productApi
+export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation} = productApi
