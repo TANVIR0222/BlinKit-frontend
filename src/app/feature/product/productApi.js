@@ -28,8 +28,12 @@ export const productApi = createApi({
       }),
       invalidatesTags:['Product']
     }),
+    getSingleProductById: builder.query({
+      query: (id) => `get-single-product-by-id/${id}`,
+      providesTags:['Product']
+    }),
 
   }),
 })
 
-export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation} = productApi
+export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery } = productApi
