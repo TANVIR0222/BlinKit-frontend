@@ -6,6 +6,7 @@ import { valideURLConvert } from "@/utils/valideURLConvert";
 import { useGetAllCategoryQuery } from "@/app/feature/category/categoryApi";
 import { useGetAllSubCategoryQuery } from "@/app/feature/subCategory/subCategoryApi";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import CategoryWiseProductDisplay from "./CategoryWiseProductDisplay";
 const HomePage = () => {
   const loadingCategory = useSelector((state) => state.product.loadingCategory);
   const categoryData = useSelector((state) => state.product.allCategory);
@@ -91,7 +92,11 @@ const HomePage = () => {
         ))}
       </div>
 
-        
+        {
+          responseData?.categorys?.map((category) => (
+            <CategoryWiseProductDisplay id={category._id} name={category.name} />
+          ))  
+        }
 
     </section>
   );
