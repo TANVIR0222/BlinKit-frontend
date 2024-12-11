@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import AddToCartButton from "./AddToCartButton";
+import { valideURLConvert } from "@/utils/valideURLConvert";
 
 const ProductCard = ({product}) => {
-    
+
     return (
-        <Link  className='border py-2 lg:p-4 grid gap-1 lg:gap-3 min-w-36 lg:min-w-52 rounded cursor-pointer bg-white' >
+        <Link to={`/productView/${product._id}`} className='border py-2 lg:p-4 grid gap-1 lg:gap-3 min-w-36 lg:min-w-52 rounded cursor-pointer bg-white' >
         <div className='min-h-20 w-full max-h-24 lg:max-h-32 rounded overflow-hidden'>
               <img 
                   src={product?.image[0]}
@@ -23,7 +25,7 @@ const ProductCard = ({product}) => {
           </div>
         </div>
         <div className='px-2 lg:px-0 font-medium text-ellipsis text-sm lg:text-base line-clamp-2'>
-          {product?.name}
+          {product?.name.substring(0, 20)}...
         </div>
         <div className='w-fit gap-1 px-2 lg:px-0 text-sm lg:text-base'>
           {product?.unit} 
@@ -33,21 +35,21 @@ const ProductCard = ({product}) => {
         <div className='px-2 lg:px-0 flex items-center justify-between gap-1 lg:gap-3 text-sm lg:text-base'>
           <div className='flex items-center gap-1'>
             <div className='font-semibold'>
-                {/* {DisplayPriceInRupees(pricewithDiscount(product?.price,data.discount))}  */}
+                {product?.price * 110} BDT
             </div>
             
             
           </div>
-          {/* <div className=''>
+          <div className=''>
             {
-              data.stock == 0 ? (
+              product?.stock == 0 ? (
                 <p className='text-red-500 text-sm text-center'>Out of stock</p>
               ) : (
-                <AddToCartButton data={data} />
+                <AddToCartButton data={product} />
               )
             }
               
-          </div> */}
+          </div>
         </div>
   
       </Link>
