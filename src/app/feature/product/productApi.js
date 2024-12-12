@@ -32,8 +32,19 @@ export const productApi = createApi({
       query: (id) => `get-single-product-by-id/${id}`,
       providesTags:['Product']
     }),
-
+    searchProduct: builder.query({
+      query: ({ search , page , limit }) => {
+        // Construct query parameters dynamically
+        const params = new URLSearchParams({
+          ...(search && { search }),
+          ...(page && { page }),
+          ...(limit && { limit }),
+        });
+        return `search-product?${params}`;
+      },
+      providesTags: ['Product'],
+    }),
   }),
 })
 
-export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery } = productApi
+export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery} = productApi
