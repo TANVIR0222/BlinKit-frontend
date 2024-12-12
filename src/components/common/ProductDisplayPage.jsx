@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import AddToCartButton from "./AddToCartButton";
 const ProductDisplayPage = () => {
   const { id } = useParams();
 
@@ -57,6 +58,8 @@ const ProductDisplayPage = () => {
                 {data?.price * 110} BDT
               </p>
             </div>
+
+            
             {data?.discount && (
               <p className="line-through">{data?.price * 110}BDT</p>
             )}
@@ -69,30 +72,49 @@ const ProductDisplayPage = () => {
           </div>
         </div>
 
+        {data.stock === 0 ? (
+              <p className="text-lg text-red-500 my-2">Out of Stock</p>
+            ) : (
+              <>
+                <button className="my-4 px-4 py-1 bg-green-600 hover:bg-green-700 text-white rounded">
+                  Add
+                </button>
+                <div className="my-4">
+                  <AddToCartButton data={data} />
+                </div>
+              </>
+            )}
+
         <h2 className="font-semibold">Why shop from binkeyit? </h2>
 
-         <div className='flex  items-center gap-4 my-4'>
-                      <img
-                        src='/Best_Prices_Offers.png'
-                        alt='Best prices offers'
-                        className='w-20 h-20'
-                      />
-                      <div className='text-sm'>
-                        <div className='font-semibold'>Best Prices & Offers</div>
-                        <p>Best price destination with offers directly from the nanufacturers.</p>
-                      </div>
-                  </div>
-                  <div className='flex  items-center gap-4 my-4'>
-                      <img
-                        src='/minute_delivery.png'
-                        alt='Wide Assortment'
-                        className='w-20 h-20'
-                      />
-                      <div className='text-sm'>
-                        <div className='font-semibold'>Wide Assortment</div>
-                        <p>Choose from 5000+ products across food personal care, household & other categories.</p>
-                      </div>
-                  </div>
+        <div className="flex  items-center gap-4 my-4">
+          <img
+            src="/Best_Prices_Offers.png"
+            alt="Best prices offers"
+            className="w-20 h-20"
+          />
+          <div className="text-sm">
+            <div className="font-semibold">Best Prices & Offers</div>
+            <p>
+              Best price destination with offers directly from the
+              nanufacturers.
+            </p>
+          </div>
+        </div>
+        <div className="flex  items-center gap-4 my-4">
+          <img
+            src="/minute_delivery.png"
+            alt="Wide Assortment"
+            className="w-20 h-20"
+          />
+          <div className="text-sm">
+            <div className="font-semibold">Wide Assortment</div>
+            <p>
+              Choose from 5000+ products across food personal care, household &
+              other categories.
+            </p>
+          </div>
+        </div>
 
         {/* Packaging Type */}
         <div className="mt-4">
@@ -125,9 +147,16 @@ const ProductDisplayPage = () => {
               <p>Refer to the product packaging for the expiry date.</p>
             </div>
             {/* Return Policy */}
-      <h2 className="text-xl font-semibold mt-6 mb-2">Return Policy</h2>
-      <p>This item is non-returnable. For damaged, defective, incorrect, or expired items, request a replacement within 72 hours of delivery.</p>
-      <p>Items must be <strong>sealed</strong>, <strong>unopened</strong>, and <strong>unused</strong> for return/replacement in case of incorrect delivery.</p>
+            <h2 className="text-xl font-semibold mt-6 mb-2">Return Policy</h2>
+            <p>
+              This item is non-returnable. For damaged, defective, incorrect, or
+              expired items, request a replacement within 72 hours of delivery.
+            </p>
+            <p>
+              Items must be <strong>sealed</strong>, <strong>unopened</strong>,
+              and <strong>unused</strong> for return/replacement in case of
+              incorrect delivery.
+            </p>
           </div>
 
           {data?.more_details &&
