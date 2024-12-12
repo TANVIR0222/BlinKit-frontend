@@ -26,8 +26,9 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#43c2d1",
+          "200": "#00b050",
+          "100": "#0b1a78",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -51,19 +52,18 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
-        "primary-200" : "#ffbf00",
+        "primary-200": "#ffbf00",
         "primary-100": "#ffc929",
-        "secondary-200": "#00b050",
-        "secondary-100": "#0b1a78",
-        secondary: "#43c2d1",
-
       },
-      "caret-blink": {
-        "0%,70%,100%": { opacity: "1" },
-        "20%,50%": { opacity: "0" },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
-      "caret-blink": "caret-blink 1.25s ease-out infinite",
-
+      keyframes: {
+        "caret-blink": {
+          "0%, 70%, 100%": { opacity: "1" },
+          "20%, 50%": { opacity: "0" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
