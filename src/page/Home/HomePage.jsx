@@ -1,5 +1,5 @@
-import banner from "@/assets/banner.jpg";
-import bannerMobile from "@/assets/banner-mobile.jpg";
+import banner from "../../../src/assets/banner.jpg";
+import bannerMobile from "../../../src/assets/banner-mobile.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { valideURLConvert } from "@/utils/valideURLConvert";
