@@ -64,7 +64,7 @@ const HomePage = () => {
             alt="banner"
           />
           <img
-            src={'/'}
+            src={'/banner-mobile.jpg'}
             className="w-full h-full lg:hidden"
             alt="banner"
           />
