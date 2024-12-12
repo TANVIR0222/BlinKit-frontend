@@ -21,6 +21,8 @@ import MyOrder from '@/page/myInformations/MyOrder';
 import SearchPage from '@/page/search/SearchPage';
 import {createBrowserRouter} from 'react-router-dom'
 
+
+
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -104,6 +106,10 @@ export const router = createBrowserRouter([
         },
         {
           path: "productEdite/:id",
+          element: <EditeProducAdmin />
+        },
+        {
+          path: ":id",
           element: <EditeProducAdmin />
         }
       ]
