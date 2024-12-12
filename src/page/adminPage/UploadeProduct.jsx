@@ -434,15 +434,6 @@ const UploadeProduct = () => {
           </button>
         </form>
       </div>
-
-      {openAddField && (
-        <AddFieldComponent
-          value={fieldName}
-          onChange={(e) => setFieldName(e.target.value)}
-          submit={handleAddField}
-          close={() => setOpenAddField(false)}
-        />
-      )}
     </section>
   );
 };
