@@ -1,5 +1,3 @@
-import banner from "../../../src/assets/banner.jpg";
-import bannerMobile from "../../../src/assets/banner-mobile.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { valideURLConvert } from "@/utils/valideURLConvert";
@@ -56,17 +54,17 @@ const HomePage = () => {
     <section className="bg-white ">
       <div className="container mx-auto">
         <div
-          className={`w-full h-full min-h-48 bg-blue-100 rounded ${
+          className={`w-full h-full min-h-48 bg-blue-100 rounded 
             !banner && "animate-pulse my-2"
-          } `}
+           `}
         >
           <img
-            src={banner}
+            src={'/banner.jpg'}
             className="w-full h-full hidden lg:block"
             alt="banner"
           />
           <img
-            src={bannerMobile}
+            src={'/'}
             className="w-full h-full lg:hidden"
             alt="banner"
           />
