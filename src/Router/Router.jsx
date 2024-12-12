@@ -1,5 +1,7 @@
 
 import App from '@/App';
+import EditeProducAdmin from '@/components/common/EditeProducAdmin';
+import ProductDisplayPage from '@/components/common/ProductDisplayPage';
 import AdminPermition from '@/Layout/AdminPermition';
 import Dashboard from '@/Layout/Dashboard';
 import Category from '@/page/adminPage/Category';
@@ -8,11 +10,12 @@ import SubCategory from '@/page/adminPage/SubCategory';
 import UploadeProduct from '@/page/adminPage/UploadeProduct';
 import ForgotPassword from '@/page/auth/ForgotPassword';
 import Login from '@/page/auth/Login';
-import OTPverify from '@/page/auth/OTPVerify';
+import OTPverify from '@/page/auth/OTPverify';
 import Profile from '@/page/auth/Profile';
 import Register from '@/page/auth/Register';
 import ResetPassword from '@/page/auth/ResetPassword';
 import HomePage from '@/page/Home/HomePage';
+import ProductListPage from '@/page/Home/ProductListPage';
 import Address from '@/page/myInformations/Address';
 import MyOrder from '@/page/myInformations/MyOrder';
 import SearchPage from '@/page/search/SearchPage';
@@ -86,7 +89,23 @@ export const router = createBrowserRouter([
             },
           ]
         },
-        
+        {
+          path : ":category",
+          children : [
+              {
+                  path : ":subCategory",
+                  element : <ProductListPage/>
+              }
+          ]
+        },
+        {
+          path: "productView/:id",
+          element: <ProductDisplayPage />
+        },
+        {
+          path: "productEdite/:id",
+          element: <EditeProducAdmin />
+        }
       ]
     },
   ]);
