@@ -1,6 +1,5 @@
 
 import App from '@/App';
-import EditeProducAdmin from '@/components/common/EditeProducAdmin';
 import ProductDisplayPage from '@/components/common/ProductDisplayPage';
 import AdminPermition from '@/Layout/AdminPermition';
 import Dashboard from '@/Layout/Dashboard';
@@ -19,6 +18,7 @@ import ProductListPage from '@/page/Home/ProductListPage';
 import Address from '@/page/myInformations/Address';
 import MyOrder from '@/page/myInformations/MyOrder';
 import SearchPage from '@/page/search/SearchPage';
+import EditeProducAdmin from '@/components/common/EditeProducAdmin';
 import {createBrowserRouter} from 'react-router-dom'
 
 
