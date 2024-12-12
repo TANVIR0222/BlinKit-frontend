@@ -110,7 +110,6 @@ export const router = createBrowserRouter([
         },
         {
           path: ":id",
-          element: <EditeProducAdmin />
         }
       ]
     },
