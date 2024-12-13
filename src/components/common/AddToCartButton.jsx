@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import { useDeleteCartItemQtyMutation, useUpdateCartItemQtyMutation } from '@/app/feature/cart/cartApi';
+import { useAddToCartMutation, useDeleteCartItemQtyMutation, useUpdateCartItemQtyMutation } from '@/app/feature/cart/cartApi';
 import { useSelector } from 'react-redux';
 import toast from "react-hot-toast";
 
@@ -56,6 +56,30 @@ const AddToCartButton = ({data}) => {
         }
     }
 
+    const {user} = useSelector((state) => state.auth)
+    const [addToCart , { error, isLoading }] = useAddToCartMutation();
+  
+    const handleAddToCart = async(e) => {
+      e.preventDefault(); 
+      e.stopPropagation(); 
+  
+      const addNewProduct =  {
+        productId : data?._id,
+        id :user?._id,
+      }
+    
+      try {
+        
+        const {message} = await addToCart(addNewProduct).unwrap();
+        toast.success(message);
+  
+      } catch (error) {
+        toast.error(error?.data?.msg);
+        
+      }
+   
+    };
+
     return (
     <div className='w-full max-w-[150px]'>
             {
@@ -68,7 +92,7 @@ const AddToCartButton = ({data}) => {
                         <button onClick={increaseQty} className='bg-green-600 hover:bg-green-700 text-white flex-1 w-full p-1 rounded flex items-center justify-center'><FaPlus /></button>
                     </div>
                 ) : (
-                    <button  className='bg-green-600 hover:bg-green-700 text-white px-2 lg:px-4 py-1 rounded'>
+                    <button onClick={handleAddToCart}  className='bg-green-600 hover:bg-green-700 text-white px-2 lg:px-4 py-1 rounded'>
                         {loading ? <Loading /> : "Add"}
                     </button>
                 )
