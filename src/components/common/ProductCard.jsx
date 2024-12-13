@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
-import { valideURLConvert } from "@/utils/valideURLConvert";
+import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
 
 const ProductCard = ({product}) => {
 
@@ -35,12 +35,11 @@ const ProductCard = ({product}) => {
         <div className='px-2 lg:px-0 flex items-center justify-between gap-1 lg:gap-3 text-sm lg:text-base'>
           <div className='flex items-center gap-1'>
             <div className='font-semibold'>
-                {product?.price * 110} BDT
+                {DisplayPriceInBDT(product?.price)}
             </div>
-            
-            
           </div>
           <div className=''>
+          
             {
               product?.stock == 0 ? (
                 <p className='text-red-500 text-sm text-center'>Out of stock</p>
