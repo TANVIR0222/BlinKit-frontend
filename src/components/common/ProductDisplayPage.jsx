@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import AddToCartButton from "./AddToCartButton";
+import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
 const ProductDisplayPage = () => {
   const { id } = useParams();
 
@@ -55,13 +56,13 @@ const ProductDisplayPage = () => {
           <div className="flex items-center gap-2 lg:gap-4 my-1">
             <div className="border border-green-600 px-4 py-2 rounded bg-green-50 w-fit">
               <p className="font-semibold text-lg lg:text-xl">
-                {data?.price * 110} BDT
+                { DisplayPriceInBDT(data?.price) } 
               </p>
             </div>
 
             
             {data?.discount && (
-              <p className="line-through">{data?.price * 110}BDT</p>
+              <p className="line-through">{DisplayPriceInBDT(data?.discount)}</p>
             )}
             {data?.discount && (
               <p className="font-bold text-green-600 lg:text-2xl">
