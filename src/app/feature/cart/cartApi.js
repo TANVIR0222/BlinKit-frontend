@@ -12,7 +12,13 @@ export const cartApi = createApi({
         body: { productId }, // Data to be sent in the request body
       }),
     }),
+    getSingleUserCart: builder.query({
+      query: () => ({
+        url: "single-user-cart",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useAddToCartMutation } = cartApi;
+export const { useAddToCartMutation , useGetSingleUserCartQuery } = cartApi;
