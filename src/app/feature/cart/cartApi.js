@@ -15,8 +15,8 @@ export const cartApi = createApi({
       invalidatesTags: ["cart"],
     }),
     getSingleUserCart: builder.query({
-      query: () => ({
-        url: "single-user-cart",
+      query: (id) => ({
+        url: `single-user-cart/${id}`,
         method: "GET",
       }),
       providesTags: ["cart"],
