@@ -2,16 +2,18 @@ import Search from "@/components/common/Search";
 import { Link } from "react-router-dom";
 import { LuUserCircle } from "react-icons/lu";
 import { TiShoppingCart } from "react-icons/ti";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserMenu from "@/components/common/UserMenu";
 import { useGetSingleUserCartQuery } from "@/app/feature/cart/cartApi";
 import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
+import { handleAddItemCart } from "@/app/feature/cart/cartSlice";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
-  // console.log(user);
 
+  const dispatch = useDispatch();
   const { data: cartItem } = useGetSingleUserCartQuery(user?._id);
+  dispatch(handleAddItemCart(cartItem?.data))
   const totalQty = cartItem?.data?.reduce((acc,item) => acc + item.quantity , 0);
   // Calculate total price
   const totalPrice = cartItem?.data.reduce((acc, item) => {
