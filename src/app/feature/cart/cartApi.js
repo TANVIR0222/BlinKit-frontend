@@ -21,7 +21,23 @@ export const cartApi = createApi({
       }),
       providesTags: ["cart"],
     }),
+    updateCartItemQty: builder.mutation({
+      query: ({ id, qty }) => ({
+        url: `single-user-cart-qty-update`, // Backend endpoint
+        method: "PUT",
+        body: { id, qty }, // Data to be sent in the request body
+      }),
+      invalidatesTags: ["cart"],
+    }),
+    deleteCartItemQty: builder.mutation({
+      query: (deleteQty) => ({
+        url: `single-user-cart-qty-delete`, // Backend endpoint
+        method: "DELETE",
+        body: deleteQty, // Data to be sent in the request body
+      }),
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
-export const { useAddToCartMutation , useGetSingleUserCartQuery } = cartApi;
+export const { useAddToCartMutation , useGetSingleUserCartQuery  , useUpdateCartItemQtyMutation , useDeleteCartItemQtyMutation} = cartApi;
