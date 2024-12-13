@@ -1,14 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import baseUrl from "@/utils/baseUrl";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const cartApi = createApi({
-  reducerPath: 'cartApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  reducerPath: "cartApi",
+  baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/cart/` }),
   endpoints: (builder) => ({
-    getPokemonByName: builder.query({
-      query: (name) => `pokemon/${name}`,
+    addToCart: builder.mutation({
+      query: ({ id, productId }) => ({
+        url: `add-cart/${id}`, // Backend endpoint
+        method: "POST",
+        body: { productId }, // Data to be sent in the request body
+      }),
     }),
   }),
-})
+});
 
-
-export const { useGetPokemonByNameQuery } = cartApi
+export const { useAddToCartMutation } = cartApi;
