@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom"
 import Header from "./shared/Header"
 import Footer from "./shared/Footer"
+import CartMobileOnly from "./components/common/CartMobileOnly";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <>
      { path || <Header />}
       <Outlet />
+      <CartMobileOnly />
       {path || <Footer /> }
     </>
   )
