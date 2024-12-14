@@ -66,7 +66,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="w-full outline-none"
+                className="w-full bg-blue-50  outline-none"
                 name="password"
                 placeholder="Enter your password"
                 {...register("password", { required: true })}
