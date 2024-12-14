@@ -6,12 +6,11 @@ import { useSelector } from 'react-redux';
 import toast from "react-hot-toast";
 
 const AddToCartButton = ({data}) => {
-    const loading = false;
     const {cart} = useSelector(state => state.cart)
     const [qty, setQty] = useState()
     const [isAvailableCart, setIsAvailableCart] = useState(false)
     const [cartItemDetails,setCartItemsDetails] = useState()    
-    
+        
 
     //checking this item in cart or not
     useEffect(() => {
@@ -21,7 +20,7 @@ const AddToCartButton = ({data}) => {
         const product = cart?.find(item => item.productId._id === data._id)
         setQty(product?.quantity)
         setCartItemsDetails(product)
-    }, [])    
+    }, [data,cart])    
     
 
     const [updateCartItemQty] = useUpdateCartItemQtyMutation()
@@ -32,10 +31,10 @@ const AddToCartButton = ({data}) => {
         e.preventDefault()
         e.stopPropagation()
     
-        setQty( qty + 1)
-
-        const {success} = await updateCartItemQty( { id: cartItemDetails?._id, qty}).unwrap();
-        
+        const newQty = qty + 1; 
+        setQty(newQty);        
+        const {success} = await updateCartItemQty({id: cartItemDetails?._id,qty: newQty}).unwrap();
+    
        if(success){
         toast.success("Item added")
        }
@@ -47,8 +46,9 @@ const AddToCartButton = ({data}) => {
         if(qty === 1){
             deleteCartItemQty(cartItemDetails?._id)
         }else{
-            setQty( qty - 1)
-            const {success} = await deleteCartItemQty( { id: cartItemDetails?._id , qty}).unwrap();
+            const newQty = qty - 1; 
+            setQty(newQty); 
+            const {success} = await deleteCartItemQty( { id: cartItemDetails?._id , qty: newQty}).unwrap();
             
             if(success){
                 toast.success("Item remove")
@@ -93,7 +93,7 @@ const AddToCartButton = ({data}) => {
                     </div>
                 ) : (
                     <button onClick={handleAddToCart}  className='bg-green-600 hover:bg-green-700 text-white px-2 lg:px-4 py-1 rounded'>
-                        {loading ? <Loading /> : "Add"}
+                        {isLoading ? <Loading /> : "Add"}
                     </button>
                 )
             }
