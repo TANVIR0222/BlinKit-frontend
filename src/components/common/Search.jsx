@@ -3,14 +3,12 @@ import { IoSearch } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { FaArrowLeft } from "react-icons/fa";
-import useMobile from '@/Hooks/useMobile';
 
 
 const Search = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const [isSearchPage,setIsSearchPage] = useState(false)
-    const [ isMobile ] = useMobile()
     const params = useLocation()
     const searchText = params.search.slice(3)
 
