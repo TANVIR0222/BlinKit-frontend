@@ -92,13 +92,8 @@ export const router = createBrowserRouter([
           ]
         },
         {
-          path : ":category",
-          children : [
-              {
-                  path : ":subCategory",
-                  element : <ProductListPage/>
-              }
-          ]
+          path : "subCategory/:id",
+          element : <ProductListPage/>
         },
         {
           path: "productView/:id",
