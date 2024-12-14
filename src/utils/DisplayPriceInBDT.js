@@ -1,6 +1,3 @@
 export const DisplayPriceInBDT = (price)=>{
-    return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'BDT',
-    }).format(price*100);
+    return Math.trunc(price * 110).toLocaleString('en-IN');
 }
