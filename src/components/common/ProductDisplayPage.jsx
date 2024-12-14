@@ -77,9 +77,6 @@ const ProductDisplayPage = () => {
               <p className="text-lg text-red-500 my-2">Out of Stock</p>
             ) : (
               <>
-                <button className="my-4 px-4 py-1 bg-green-600 hover:bg-green-700 text-white rounded">
-                  Add
-                </button>
                 <div className="my-4">
                   <AddToCartButton data={data} />
                 </div>
