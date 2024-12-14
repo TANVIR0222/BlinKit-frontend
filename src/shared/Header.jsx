@@ -1,29 +1,12 @@
 import Search from "@/components/common/Search";
 import { Link } from "react-router-dom";
 import { LuUserCircle } from "react-icons/lu";
-import { TiShoppingCart } from "react-icons/ti";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import UserMenu from "@/components/common/UserMenu";
-import { useGetSingleUserCartQuery } from "@/app/feature/cart/cartApi";
-import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
-import { handleAddItemCart } from "@/app/feature/cart/cartSlice";
+import CartSidebar from "@/components/common/CartSidebar";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
-  const { data: cartItem } = useGetSingleUserCartQuery(user?._id);
-  dispatch(handleAddItemCart(cartItem?.data))
-  const totalQty = cartItem?.data?.reduce((acc,item) => acc + item.quantity , 0);
-  // Calculate total price
-  const totalPrice = cartItem?.data.reduce((acc, item) => {
-  const price = item.productId.price;
-  const discount = item.productId.discount;
-  const quantity = item.quantity;
-
-  const discountedPrice = price + discount; // Discount is negative, so we add it
-  return acc + discountedPrice * quantity;
-}, 0);
 
   return (
     <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
@@ -59,7 +42,7 @@ const Header = () => {
           </button>
 
           {/* only show on desktop */}
-          <div className="hidden lg:flex items-center gap-5 ">
+          <div className="hidden lg:flex items-center gap-3  ">
             {user ? (
               <div className="flex items-center gap-2 cursor-pointer">
                 <p>Account</p>
@@ -70,28 +53,14 @@ const Header = () => {
                 Login
               </Link>
             )}
-
-            <button className="flex items-center gap-2 bg-green-700 hover:bg-green-900 px-3 py-3 rounded-md text-white">
-              {/*add to card icon */}
-              <div className=" animate-bounce">
-                <TiShoppingCart size={28} />
-              </div>
-              {/* item  */}
-              <div className="font-semibold text-sm">
-                {cartItem ? (
-                  <div>
-                    <p>{totalQty} Items</p>
-                    <p>{DisplayPriceInBDT(totalPrice)}</p>
-                  </div>
-                ) : (
-                  <p>My Cart</p>
-                )}
-              </div>
-            </button>
+           <div className="">
+              <CartSidebar />
+            </div>
           </div>
+          
         </div>
+        
       </div>
-
       <div className="container mx-auto px-2 lg:hidden">
         <Search />
       </div>
