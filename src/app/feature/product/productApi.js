@@ -44,7 +44,11 @@ export const productApi = createApi({
       },
       providesTags: ['Product'],
     }),
+    getSubCategoryProductById: builder.query({
+      query: (id) => `get-sub-category-product-by-category/${id}`,
+      providesTags:['Product']
+    }),
   }),
 })
 
-export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery} = productApi
+export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery , useGetSubCategoryProductByIdQuery} = productApi
