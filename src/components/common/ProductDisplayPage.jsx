@@ -73,7 +73,7 @@ const ProductDisplayPage = () => {
           </div>
         </div>
 
-        {data.stock === 0 ? (
+        {data?.stock === 0 ? (
               <p className="text-lg text-red-500 my-2">Out of Stock</p>
             ) : (
               <>
