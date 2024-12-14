@@ -30,10 +30,10 @@ export const cartApi = createApi({
       invalidatesTags: ["cart"],
     }),
     deleteCartItemQty: builder.mutation({
-      query: (deleteQty) => ({
+      query: ({ id, qty }) => ({
         url: `single-user-cart-qty-delete`, // Backend endpoint
-        method: "DELETE",
-        body: deleteQty, // Data to be sent in the request body
+        method: "PUT",
+        body: { id, qty }, // Data to be sent in the request body
       }),
       invalidatesTags: ["cart"],
     }),
