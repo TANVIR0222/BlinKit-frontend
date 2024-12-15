@@ -1,5 +1,4 @@
-
-import { useGetSingleUserQuery } from "@/app/feature/auth/authApi";
+import { useGetSingleUserQuery } from "../app/feature/auth/authApi"; // Adjust as needed
 import {  useSelector } from "react-redux";
 
 const useUser = () => {

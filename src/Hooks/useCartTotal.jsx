@@ -2,12 +2,20 @@ import { useGetSingleUserCartQuery } from "@/app/feature/cart/cartApi";
 import { handleAddItemCart } from "@/app/feature/cart/cartSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useUser from "./useUser";
 
 const useCartTotal = () => {
-  const { user } = useSelector((state) => state.auth);
+  const [ user ] = useUser()
+  console.log(user?._id);
+
+  const id = user?._id;
+  
+
+  const { data: cartItem , isFetching } = useGetSingleUserCartQuery(id, { skip: !id});
+  console.log(cartItem);
 
   const dispatch = useDispatch();
-  const { data: cartItem } = useGetSingleUserCartQuery(user?._id);
+
   dispatch(handleAddItemCart(cartItem?.data));
   const totalQty = cartItem?.data?.reduce(
     (acc, item) => acc + item.quantity,

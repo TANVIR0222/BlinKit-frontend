@@ -48,7 +48,15 @@ export const productApi = createApi({
       query: (id) => `get-sub-category-product-by-category/${id}`,
       providesTags:['Product']
     }),
+    updateProduct: builder.mutation({
+      query: ({id, ...res}) => ({
+        url: `update-product-deatils/${id}`,
+        method: "PUT",
+        body: res
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 })
 
-export const { useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery , useGetSubCategoryProductByIdQuery} = productApi
+export const { useUpdateProductMutation ,useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery , useGetSubCategoryProductByIdQuery} = productApi
