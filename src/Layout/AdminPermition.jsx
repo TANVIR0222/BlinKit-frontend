@@ -1,13 +1,14 @@
+import useUser from "@/Hooks/useUser";
 import isAdmin from "@/utils/isAdmin";
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const AdminPermition = ({children}) => {
-    const {user} = useSelector((state) => state.auth);
+    const [,userData] = useUser();
+
     return (
         <>
             {
-                isAdmin(user.role) ? children : <Navigate to="/login" />
+                isAdmin(userData?.role) ? children : <Navigate to="/login" />
             }
         </>
     );
