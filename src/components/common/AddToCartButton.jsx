@@ -4,6 +4,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useAddToCartMutation, useDeleteCartItemQtyMutation, useUpdateCartItemQtyMutation } from '@/app/feature/cart/cartApi';
 import { useSelector } from 'react-redux';
 import toast from "react-hot-toast";
+import Swal from 'sweetalert2';
 
 const AddToCartButton = ({data}) => {
     const {cart} = useSelector(state => state.cart)
@@ -69,9 +70,24 @@ const AddToCartButton = ({data}) => {
       }
     
       try {
-        
+        if(user){
         const {message} = await addToCart(addNewProduct).unwrap();
         toast.success(message);
+        }else{
+            Swal.fire({
+                title: "You ar not logged in",
+                text: "Please login to add to  the card? ",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, log in !"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login');
+                }
+            });
+        }
   
       } catch (error) {
         toast.error(error?.data?.msg);
