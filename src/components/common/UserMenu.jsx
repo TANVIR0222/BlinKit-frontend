@@ -16,11 +16,14 @@ import { useUserLogoutMutation } from "@/app/feature/auth/authApi";
 import { useDispatch } from "react-redux";
 import { logout } from "@/app/feature/auth/authSlice";
 import Swal from "sweetalert2";
-const UserMenu = ({ user }) => {
+import useUser from "@/Hooks/useUser";
+const UserMenu = () => {
   const [position, setPosition] = useState("");
   const navigate = useNavigate();
   const [userLogout] = useUserLogoutMutation();
   const dispatch = useDispatch();
+
+  const [,userData] = useUser()
 
   const Logout = async () => {
     try {
@@ -61,7 +64,7 @@ const UserMenu = ({ user }) => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel className="text-xl">My Account </DropdownMenuLabel>
         <DropdownMenuLabel className=" flex items-center font-bold gap-3">
-          {user?.name} {user.role === "ADMIN"  && '(Admin)'}{" "}
+          {userData?.name} {userData?.role === "ADMIN"  && '(Admin)'}{" "}
           <Link to={'dashboard/profile'}>
             <GoLinkExternal  className="text-blue-700 font-bold text-md" />
           </Link>{" "}

@@ -2,18 +2,20 @@ import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import UpdateProfile from "./UpdateProfile";
+import useUser from "@/Hooks/useUser";
 
 const Profile = () => {
   const loading = false;
-  const { user } = useSelector((state) => state.auth);
   const [openProfileAvatarEdit, setProfileAvatarEdit] = useState(false);
+  const [,userData] = useUser();
+  
 
   return (
     <div className="p-4">
       {/**profile upload and display image */}
       <div className="w-20 h-20 bg-red-500 flex items-center justify-center rounded-full overflow-hidden drop-shadow-sm">
-        {user?.avatar ? (
-          <img alt={user?.name} src={user?.avatar} className="w-full h-full" />
+        {userData?.avatar ? (
+          <img alt={userData?.name} src={userData?.avatar} className="w-full h-full" />
         ) : (
           <FaRegUserCircle size={65} />
         )}
@@ -26,7 +28,7 @@ const Profile = () => {
       </button>
 
       {openProfileAvatarEdit && (
-        <UpdateProfile close={() => setProfileAvatarEdit(false)} user={user} />
+        <UpdateProfile close={() => setProfileAvatarEdit(false)} user={userData} />
       )}
 
       {/**name, mobile , email, change password */}
@@ -37,7 +39,7 @@ const Profile = () => {
             type="text"
             placeholder="Enter your name"
             className="p-2 bg-blue-50 w-96 outline-none border focus-within:border-black rounded"
-            value={user.name}
+            defaultValue={userData?.name}
             name="name"
             required
           />
@@ -47,7 +49,7 @@ const Profile = () => {
           <input
             type="email"
             id="email"
-            defaultValue={user.email}
+            defaultValue={userData?.email}
             placeholder="Enter your email"
             className="p-2 bg-blue-50 w-96 outline-none border focus-within:border-black rounded"
             name="email"

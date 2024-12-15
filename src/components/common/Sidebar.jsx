@@ -1,17 +1,17 @@
+import useUser from '@/Hooks/useUser';
 import isAdmin from '@/utils/isAdmin';
 import React from 'react';
 import { GoLinkExternal } from 'react-icons/go';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-  const { user } = useSelector((state) => state.auth);
+  const [,userData] = useUser();
 
     return (
         <div>
             <h1 className="text-2xl font-semibold">My Account</h1>
           <h6 className=" flex items-center mt-2 gap-3">
-            {user?.name}<p className=' font-semibold '>{user.role === "ADMIN"  && '(Admin)'}</p> {" "}
+            {userData?.name}<p className=' font-semibold '>{userData?.role === "ADMIN"  && '(Admin)'}</p> {" "}
             <Link to={"profile"}>
               <GoLinkExternal className="text-blue-700 font-bold text-md" />
             </Link>{" "}
@@ -19,7 +19,7 @@ const Sidebar = () => {
           <hr className="my-4" />
 
             {
-              isAdmin(user.role) && (
+              isAdmin(userData?.role) && (
                 <>
                 <Link to={'category'}><h3 className=" space-y-3 hover:bg-slate-400/5 p-2 rounded">Category</h3></Link>
                 <Link to={'sub-category'}><h3 className=" space-y-3 hover:bg-slate-400/5 p-2 rounded">Sub Category</h3></Link>
