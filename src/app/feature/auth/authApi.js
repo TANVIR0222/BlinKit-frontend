@@ -68,6 +68,10 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    getSingleUser: builder.query({
+      query: (id) =>`single-user-data/${id}`,
+      providesTags: ["User"],
+    }),
   }),
 });
 
@@ -78,5 +82,6 @@ export const {
   useUserForgotOTPVerifyMutation,
   useUserResetPasswordMutation,
   useUserLogoutMutation,
-  useUserImageUpdateMutation
+  useUserImageUpdateMutation,
+  useGetSingleUserQuery,
 } = authApi;
