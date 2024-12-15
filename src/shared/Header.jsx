@@ -1,12 +1,14 @@
 import Search from "@/components/common/Search";
 import { Link } from "react-router-dom";
 import { LuUserCircle } from "react-icons/lu";
-import { useSelector } from "react-redux";
 import UserMenu from "@/components/common/UserMenu";
 import CartSidebar from "@/components/common/CartSidebar";
+import useUser from "@/Hooks/useUser";
 
 const Header = () => {
-  const { user } = useSelector((state) => state.auth);
+
+  const [user] = useUser();
+  
 
   return (
     <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
@@ -32,7 +34,7 @@ const Header = () => {
             {user ? (
               <div className="flex items-center gap-2 cursor-pointer">
                 <p>Account</p>
-                <UserMenu user={user} />
+                <UserMenu />
               </div>
             ) : (
               <Link to="/login">
@@ -46,7 +48,7 @@ const Header = () => {
             {user ? (
               <div className="flex items-center gap-2 cursor-pointer">
                 <p>Account</p>
-                <UserMenu user={user} />
+                <UserMenu  />
               </div>
             ) : (
               <Link to={"/Login"} className="text-lg px-2">
@@ -54,7 +56,7 @@ const Header = () => {
               </Link>
             )}
            <div className="">
-              <CartSidebar />
+              <CartSidebar  />
             </div>
           </div>
           
