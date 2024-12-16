@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "@/app/feature/auth/authSlice";
 import Swal from "sweetalert2";
 import useUser from "@/Hooks/useUser";
+import isAdmin from "@/utils/isAdmin";
 const UserMenu = () => {
   const [position, setPosition] = useState("");
   const navigate = useNavigate();
@@ -83,6 +84,16 @@ const UserMenu = () => {
               Save Address
             </DropdownMenuRadioItem>
           </Link>
+          {
+              isAdmin(userData?.role) && (
+                <>
+                <Link to={'category'}><DropdownMenuRadioItem >Category</DropdownMenuRadioItem></Link>
+                <Link to={'sub-category'}><DropdownMenuRadioItem >Sub Category</DropdownMenuRadioItem></Link>
+                <Link to={'uploade-product'}><DropdownMenuRadioItem >Uploade Product </DropdownMenuRadioItem></Link>
+                <Link to={'product'}><DropdownMenuRadioItem >product</DropdownMenuRadioItem></Link>
+                </>
+              )
+            }
           <DropdownMenuRadioItem onClick={Logout} value="Logout">
             Log Out
           </DropdownMenuRadioItem>
