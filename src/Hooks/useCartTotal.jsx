@@ -24,9 +24,9 @@ const useCartTotal = () => {
   let totalDiscountedPrice = 0; // Total after applying discount
 
   cartItem?.data.forEach((item) => {
-    const price = item.productId.price;
-    const discount = item.productId.discount;
-    const quantity = item.quantity;
+    const price = item?.productId?.price;
+    const discount = item?.productId?.discount;
+    const quantity = item?.quantity;
 
     const discountedPrice = price - discount;
 

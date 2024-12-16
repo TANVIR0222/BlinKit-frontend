@@ -15,10 +15,10 @@ const AddToCartButton = ({data}) => {
 
     //checking this item in cart or not
     useEffect(() => {
-        const checkingitem = cart?.some(item => item.productId._id === data._id)
+        const checkingitem = cart?.some(item => item.productId?._id === data?._id)
         setIsAvailableCart(checkingitem)        
 
-        const product = cart?.find(item => item.productId._id === data._id)
+        const product = cart?.find(item => item.productId?._id === data?._id)
         setQty(product?.quantity)
         setCartItemsDetails(product)
     }, [data,cart])    
