@@ -9,9 +9,7 @@ import ImageView from "@/components/common/ImageView";
 import { IoClose } from "react-icons/io5";
 import { useGetAllCategoryQuery } from "@/app/feature/category/categoryApi";
 import { useGetAllSubCategoryQuery } from "@/app/feature/subCategory/subCategoryApi";
-import AddFieldComponent from "@/components/common/AddFieldComponent";
 import { useProductUploadeMutation } from "@/app/feature/product/productApi";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const UploadeProduct = () => {
@@ -117,31 +115,24 @@ const UploadeProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const name = data.name;
-    const image = data.image;
-    const category = data.category;
-    const subCategory = data.subCategory;
-    const unit = data.unit;
-    const stock = data.stock;
-    const price = data.price;
-    const discount = data.discount;
-    const description = data.description;
-    const more_details = data.more_details;
+
+    const productData ={
+      name : data.name,
+     image : data.image,
+     category : data.category,
+     subCategory : data.subCategory,
+     unit : data.unit,
+     stock : data.stock,
+     price : data.price,
+     discount : data.discount,
+     description : data.description,
+     more_details : data.more_details,
+      
+    }
 
     try {
-      const res = await productUploade({
-        name,
-        image,
-        category,
-        subCategory,
-        unit,
-        stock,
-        price,
-        discount,
-        description,
-        more_details,
-      }).unwrap();
-      if (res.success) {
+      const {success} = await productUploade(productData).unwrap();
+      if (success) {
         Swal.fire({
           position: "center",
           icon: "success",
