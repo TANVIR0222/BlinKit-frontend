@@ -54,9 +54,16 @@ export const productApi = createApi({
         method: "PUT",
         body: res
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Product"],
+    }),
+    delateProduct : builder.mutation({
+      query: (id) => ({
+        url: `delete-product/${id}`,
+        method: 'DELETE',
+      }),
+        invalidatesTags: ['Product'],
     }),
   }),
 })
 
-export const { useUpdateProductMutation ,useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery , useGetSubCategoryProductByIdQuery} = productApi
+export const { useDelateProductMutation ,useUpdateProductMutation ,useProductUploadeMutation , useGetProductsQuery  , useGetProductByCategoryMutation ,useGetSingleProductByIdQuery  , useSearchProductQuery , useGetSubCategoryProductByIdQuery} = productApi
