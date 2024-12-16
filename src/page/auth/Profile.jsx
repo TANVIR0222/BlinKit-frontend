@@ -1,14 +1,47 @@
 import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import UpdateProfile from "./UpdateProfile";
 import useUser from "@/Hooks/useUser";
+import { useForm } from "react-hook-form";
+import { useUserUpdateMutation } from "@/app/feature/auth/authApi";
 
 const Profile = () => {
-  const loading = false;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
   const [openProfileAvatarEdit, setProfileAvatarEdit] = useState(false);
-  const [,userData] = useUser();
+  const [user,userData] = useUser();
   
+  const [userUpdate , {isLoading}] = useUserUpdateMutation();
+
+  const onSubmit = async (data) => {
+    // console.log(data);
+
+    const updateData = {
+      id : user?._id,
+      name: data.name,
+      email: data.email,
+      number: data.mobile,
+    }
+
+    try {
+      const res = await userUpdate(updateData).unwrap();
+      console.log(res);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+    
+  }
+
+
 
   return (
     <div className="p-4">
@@ -32,7 +65,7 @@ const Profile = () => {
       )}
 
       {/**name, mobile , email, change password */}
-      <form className="my-4 grid gap-4">
+      <form className="my-4 grid gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid">
           <label>Name</label>
           <input
@@ -41,7 +74,7 @@ const Profile = () => {
             className="p-2 bg-blue-50 w-96 outline-none border focus-within:border-black rounded"
             defaultValue={userData?.name}
             name="name"
-            required
+              {...register("name", { required: true })}
           />
         </div>
         <div className="grid">
@@ -53,23 +86,24 @@ const Profile = () => {
             placeholder="Enter your email"
             className="p-2 bg-blue-50 w-96 outline-none border focus-within:border-black rounded"
             name="email"
-            required
-          />
+            {...register("email", { required: true })}
+            />
         </div>
         <div className="grid">
           <label htmlFor="mobile">Mobile</label>
           <input
             type="text"
             id="mobile"
+            defaultValue={userData?.number}
             placeholder="Enter your mobile"
             className="p-2 bg-blue-50 w-96 outline-none border focus-within:border-black rounded"
             name="mobile"
-            required
-          />
+            {...register("mobile", { required: true })}
+            />
         </div>
 
         <button className="border w-96 px-4 py-2 font-semibold bg-slate-900 hover:bg-slate-950 text-white rounded">
-          {loading ? "Loading..." : "Submit"}
+          {isLoading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>
