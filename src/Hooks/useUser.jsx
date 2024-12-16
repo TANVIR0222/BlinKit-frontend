@@ -9,7 +9,7 @@ const useUser = () => {
     
   
  
-  return [user , userData];
+  return [user , userData , isLoading];
 };
 
 export default useUser;
