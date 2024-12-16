@@ -23,18 +23,17 @@ const useCartTotal = () => {
   let currentPrice = 0; // Total without discount
   let totalDiscountedPrice = 0; // Total after applying discount
 
-  cartItem?.data.forEach((item) => {
+  cartItem?.data?.forEach((item) => {
     const price = item?.productId?.price;
     const discount = item?.productId?.discount;
-    const quantity = item?.quantity;
-
+    const quantity = item.quantity;
     const discountedPrice = price - discount;
 
     currentPrice += price * quantity;
     totalDiscountedPrice += discountedPrice * quantity;
   });
 
-  const totalPrice = totalDiscountedPrice;
+  const totalPrice = currentPrice;
 
   return [totalQty, totalPrice, cartItem];
 };
