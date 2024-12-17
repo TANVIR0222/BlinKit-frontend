@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Helmet } from "react-helmet";
 
 const SubCategory = () => {
   const { data, isLoading } = useGetAllSubCategoryQuery();
@@ -18,6 +19,9 @@ const SubCategory = () => {
   return (
     <div>
       <section className="">
+      <Helmet>
+        <title>Admin SubCategory Page || Blinkeyit</title>
+      </Helmet>
         <div className="p-2   bg-white shadow-md flex items-center justify-between">
           <h2 className="font-semibold">Sub Category</h2>
           <button className="">

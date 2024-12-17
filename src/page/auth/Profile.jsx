@@ -4,6 +4,7 @@ import UpdateProfile from "./UpdateProfile";
 import useUser from "@/Hooks/useUser";
 import { useForm } from "react-hook-form";
 import { useUserUpdateMutation } from "@/app/feature/auth/authApi";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
 
@@ -45,6 +46,9 @@ const Profile = () => {
 
   return (
     <div className="p-4">
+       <Helmet>
+        <title>Profile Page || Blinkeyit</title>
+      </Helmet>
       {/**profile upload and display image */}
       <div className="w-20 h-20 bg-red-500 flex items-center justify-center rounded-full overflow-hidden drop-shadow-sm">
         {userData?.avatar ? (

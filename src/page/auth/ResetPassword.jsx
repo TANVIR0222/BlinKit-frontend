@@ -1,5 +1,6 @@
 import { useUserResetPasswordMutation } from "@/app/feature/auth/authApi";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
@@ -53,6 +54,9 @@ const ResetPassword = () => {
 
   return (
     <section className="w-full container mx-auto px-2">
+       <Helmet>
+        <title>Reset Password Page || Blinkeyit</title>
+      </Helmet>
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7">
         <p className="font-semibold text-lg">Enter Your Password </p>
         <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>

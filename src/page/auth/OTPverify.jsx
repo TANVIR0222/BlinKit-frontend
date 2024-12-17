@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useUserForgotOTPVerifyMutation } from "@/app/feature/auth/authApi";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 const OTPverify = () => {
   const navigate = useNavigate();
 
@@ -52,6 +53,9 @@ const OTPverify = () => {
 
   return (
     <section className="w-full container mx-auto px-2">
+       <Helmet>
+        <title>OTPVerify Page || Blinkeyit</title>
+      </Helmet>
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7">
         <p className="font-semibold text-lg">Enter OTP</p>
         <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>

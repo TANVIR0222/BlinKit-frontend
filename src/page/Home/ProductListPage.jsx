@@ -4,6 +4,7 @@ import Loading from "@/components/common/Loading";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import ProductCard from "@/components/common/ProductCard";
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 
 const ProductListPage = () => {
@@ -26,6 +27,9 @@ const ProductListPage = () => {
     <LoadingSpinner />
   ) : (
     <div>
+      <Helmet>
+        <title>Product Listing Page || Blinkeyit</title>
+      </Helmet>
       <section className="sticky top-24 lg:top-20">
         <div className="container sticky top-24 mx-auto grid grid-cols-[90px,1fr] md:grid-cols-[200px,1fr] lg:grid-cols-[280px,1fr]">
           {/** Subcategory **/}

@@ -2,6 +2,7 @@ import { Link} from "react-router-dom";
 import { useGetAllCategoryQuery } from "@/app/feature/category/categoryApi";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import CategoryWiseProductDisplay from "./CategoryWiseProductDisplay";
+import { Helmet } from "react-helmet";
 const HomePage = () => {
  
   const { data: responseData , isLoading:allCategortLoading} = useGetAllCategoryQuery();
@@ -10,6 +11,9 @@ const HomePage = () => {
 
   return (
     <section className="bg-white ">
+       <Helmet>
+          <title>Home Page || Blinkeyit</title>
+        </Helmet>
       <div className="container mx-auto">
         <div
           className={`w-full h-full min-h-48 bg-blue-100 rounded 

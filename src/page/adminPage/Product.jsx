@@ -2,6 +2,7 @@ import { useGetProductsQuery } from "@/app/feature/product/productApi";
 import ProductCartAdmin from "@/components/common/ProductCartAdmin";
 import ProductSearch from "@/components/common/ProductSearch";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 function Product() {
   const [page, setPage] = useState(1);
@@ -27,7 +28,9 @@ function Product() {
 
   return (
     <div>
-      
+       <Helmet>
+        <title>Product Page || Blinkeyit</title>
+      </Helmet>
       <div className="p-1  bg-white shadow-md flex items-center justify-between">
         <div className="">
           <h2 className="font-semibold md:text-xl text-sm">

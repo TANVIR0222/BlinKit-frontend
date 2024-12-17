@@ -11,6 +11,7 @@ import { useGetAllCategoryQuery } from "@/app/feature/category/categoryApi";
 import { useGetAllSubCategoryQuery } from "@/app/feature/subCategory/subCategoryApi";
 import { useProductUploadeMutation } from "@/app/feature/product/productApi";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const UploadeProduct = () => {
   const { user } = useSelector((state) => state.auth);
@@ -160,6 +161,9 @@ const UploadeProduct = () => {
 
   return (
     <section>
+      <Helmet>
+        <title>Admin uploade Page || Blinkeyit</title>
+      </Helmet>
       <div className="p-2   bg-white shadow-md flex items-center justify-between">
         <h2 className="font-semibold">Upload Product</h2>
       </div>

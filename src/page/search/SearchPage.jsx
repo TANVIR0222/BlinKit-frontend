@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardLoading from "@/components/common/CardLoading";
 import ProductCard from "@/components/common/ProductCard";
 import Loading from "@/components/common/Loading";
+import { Helmet } from "react-helmet";
 
 const SearchPage = () => {
   const [page, setPage] = useState(1);
@@ -27,6 +28,9 @@ const SearchPage = () => {
     <Loading />
   ) : (
     <div>
+      <Helmet>
+        <title>Search Page || Blinkeyit</title>
+      </Helmet>
       <section className="">
         <div className="container mx-auto p-4">
           <p className="font-semibold">
@@ -73,9 +77,9 @@ const SearchPage = () => {
               onClick={() => handlePageChange(i + 1)}
               className={`px-4 gap-3 py-2 rounded-lg border ${
                 i + 1 === data?.currentPage
-                  ? "bg-blue-500 text-white"
+                  ? "bg-green-600 text-white"
                   : "bg-white text-gray-600 border-gray-300"
-              } hover:bg-blue-400 hover:text-white transition`}
+              } hover:bg-green-400 hover:text-white transition`}
             >
               {i + 1}
             </button>

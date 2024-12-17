@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useImageUploadeMutation } from "@/app/feature/uploadeImage/imageApi";
 import uploadImage from "@/utils/uploadeImage";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const EditeProducAdmin = () => {
   const { id } = useParams();
@@ -96,6 +97,9 @@ const EditeProducAdmin = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Edite Produc Admin Page || Blinkeyit</title>
+      </Helmet>
       <section>
         <div className="p-2   bg-white shadow-md flex items-center justify-between">
           <h2 className="font-semibold">Upload Product</h2>

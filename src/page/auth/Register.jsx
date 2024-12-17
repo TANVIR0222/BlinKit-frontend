@@ -5,6 +5,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useUserRegisterMutation } from "@/app/feature/auth/authApi";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
 
@@ -52,6 +53,9 @@ const Register = () => {
 
   return (
     <section className="w-full container mx-auto px-2">
+       <Helmet>
+        <title>Register Page || Blinkeyit</title>
+      </Helmet>
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7">
         <p>Welcome to Binkeyit</p>
 

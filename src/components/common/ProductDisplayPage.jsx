@@ -5,6 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import AddToCartButton from "./AddToCartButton";
 import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
+import { Helmet } from "react-helmet";
 const ProductDisplayPage = () => {
   const { id } = useParams();
 
@@ -14,6 +15,9 @@ const ProductDisplayPage = () => {
     <Loading />
   ) : (
     <section className="container mx-auto p-4 grid lg:grid-cols-2 ">
+      <Helmet>
+        <title>Product Display Page || Blinkeyit</title>
+      </Helmet>
       <div className="">
         {/* product image */}
 

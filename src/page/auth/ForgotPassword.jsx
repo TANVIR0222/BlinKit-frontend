@@ -1,6 +1,7 @@
 import { useUserForgotPasswordMutation } from "@/app/feature/auth/authApi";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,6 +38,9 @@ const ForgotPassword = () => {
 
   return (
     <section className="w-full container mx-auto px-2">
+       <Helmet>
+        <title>Forgot Password Page || Blinkeyit</title>
+      </Helmet>
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7">
         <p className="font-semibold text-lg">Forgot Password </p>
         <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>

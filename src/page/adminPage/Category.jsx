@@ -4,6 +4,7 @@ import Loading from "@/components/common/Loading";
 import NoData from "@/components/common/NoData";
 import EditeCategory from "../../components/common/EditeCategory ";
 import DeleteProduct from "@/components/common/DeleteProduct";
+import { Helmet } from "react-helmet";
 
 
 const Category = () => {
@@ -13,6 +14,9 @@ const Category = () => {
   return (
     <div>
       <div className="p-2   bg-white shadow-md flex items-center justify-between">
+      <Helmet>
+        <title>Admin Category Page || Blinkeyit</title>
+      </Helmet>
         <h2 className="font-semibold">Category</h2>
         <button className="">
           <UploadeCategoryModel />

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useUserLoginMutation } from "@/app/feature/auth/authApi";
 import { setUser } from "@/app/feature/auth/authSlice";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const {
@@ -47,6 +48,9 @@ const Login = () => {
 
   return (
     <section className="w-full container mx-auto px-2">
+       <Helmet>
+        <title>Login Page || Blinkeyit</title>
+      </Helmet>
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7">
         <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-1">
