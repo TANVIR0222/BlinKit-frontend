@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import Loading from './Loading';
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import { useAddToCartMutation, useDeleteCartItemQtyMutation, useUpdateCartItemQtyMutation } from '@/app/feature/cart/cartApi';
+import { useAddToCartMutation, useDeleteCartItemMutation, useDeleteCartItemQtyMutation, useUpdateCartItemQtyMutation } from '@/app/feature/cart/cartApi';
 import { useSelector } from 'react-redux';
 import toast from "react-hot-toast";
 import Swal from 'sweetalert2';
+import useUser from '@/Hooks/useUser';
 
 const AddToCartButton = ({data}) => {
     const {cart} = useSelector(state => state.cart)
     const [qty, setQty] = useState()
     const [isAvailableCart, setIsAvailableCart] = useState(false)
-    const [cartItemDetails,setCartItemsDetails] = useState()    
-        
+    const [cartItemDetails,setCartItemsDetails] = useState()   
+
 
     //checking this item in cart or not
     useEffect(() => {
@@ -26,7 +27,8 @@ const AddToCartButton = ({data}) => {
 
     const [updateCartItemQty] = useUpdateCartItemQtyMutation()
     const [deleteCartItemQty] = useDeleteCartItemQtyMutation()
-
+    const [deleteCartItem] = useDeleteCartItemMutation()
+    const {user} = useSelector((state) => state.auth)    
 
     const increaseQty = async(e) => {
         e.preventDefault()
@@ -45,7 +47,8 @@ const AddToCartButton = ({data}) => {
         e.preventDefault()
         e.stopPropagation()
         if(qty === 1){
-            deleteCartItemQty(cartItemDetails?._id)
+            const {message} = await deleteCartItem({productId: data._id ,  id: user?._id}).unwrap();            
+            toast.success(`${message}`)
         }else{
             const newQty = qty - 1; 
             setQty(newQty); 
@@ -57,7 +60,6 @@ const AddToCartButton = ({data}) => {
         }
     }
 
-    const {user} = useSelector((state) => state.auth)
     const [addToCart , { error, isLoading }] = useAddToCartMutation();
   
     const handleAddToCart = async(e) => {
