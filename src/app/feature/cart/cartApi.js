@@ -34,7 +34,15 @@ export const cartApi = createApi({
       }),
       invalidatesTags: ["cart"],
     }),
+    deleteCartItem: builder.mutation({
+      query: ({id,productId}) => ({
+        url: `single-user-cart-delete/${id}`, // Backend endpoint
+        method: "Delete",
+        body: {productId}, // Data to be sent in the request body
+      }),
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
-export const { useAddToCartMutation , useGetSingleUserCartQuery  , useUpdateCartItemQtyMutation , useDeleteCartItemQtyMutation} = cartApi;
+export const { useDeleteCartItemMutation ,useAddToCartMutation , useGetSingleUserCartQuery  , useUpdateCartItemQtyMutation , useDeleteCartItemQtyMutation} = cartApi;
