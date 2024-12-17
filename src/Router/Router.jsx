@@ -89,6 +89,10 @@ export const router = createBrowserRouter([
               path: "product",
               element: <AdminPermition><Product /></AdminPermition>,
             },
+            {
+              path: "productEdite/:id",
+              element: <AdminPermition> <EditeProducAdmin /></AdminPermition>,
+            },
           ]
         },
         {
@@ -99,10 +103,7 @@ export const router = createBrowserRouter([
           path: "productView/:id",
           element: <ProductDisplayPage />
         },
-        {
-          path: "productEdite/:id",
-          element: <EditeProducAdmin />
-        },
+        
         {
           path: ":id",
         }
