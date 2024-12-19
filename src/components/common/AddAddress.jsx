@@ -16,9 +16,7 @@ const AddAddress = ({ close }) => {
   const [addAddress , {isLoading}] = useAddAddressMutation();
 
   const onSubmit = async (data) => {
-    const { addressline, city, state, pincode, country, mobile } = data;
-    console.log(data);
-    
+    const { addressline, city, state, pincode, country, mobile } = data;    
     const newAddress = {
       addressline,
       city,
