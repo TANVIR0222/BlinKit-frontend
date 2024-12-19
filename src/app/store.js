@@ -9,22 +9,26 @@ import { productApi } from './feature/product/productApi'
 import  productReducer  from './feature/product/productSlice'
 import { cartApi } from './feature/cart/cartApi'
 import  cartReducer  from './feature/cart/cartSlice'
+import  addressReducer  from './feature/address/addressSlice'
+import { addressApi } from './feature/address/adderssApi'
 
 export const store = configureStore({
   reducer: {
     auth:  authReducer,
     product: productReducer  ,
     cart: cartReducer  ,
+    address: addressReducer  ,
     [authApi.reducerPath]: authApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [imageApi.reducerPath]: imageApi.reducer,
     [subCategoryApi.reducerPath]: subCategoryApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
+    [addressApi.reducerPath]: addressApi.reducer,
   },
   
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware,productApi.middleware,cartApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware,productApi.middleware,cartApi.middleware , addressApi.middleware),
 })
 
 setupListeners(store.dispatch)
