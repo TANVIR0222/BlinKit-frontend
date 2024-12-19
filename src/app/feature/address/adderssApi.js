@@ -5,6 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const addressApi = createApi({
   reducerPath: "addressApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl()}/address/` }),
+  tagTypes: ["Address"],
   endpoints: (builder) => ({
     addAddress: builder.mutation({
       query: (body) => ({
@@ -12,9 +13,11 @@ export const addressApi = createApi({
         method: "POST",
         body, // The address data
       }),
+      invalidatesTags: ["Address"],
     }),
     getUserAddress: builder.query({
       query: (id) => `get-single-address/${id}`,
+      providesTags: ["Address"],
     }),
     updateAddress : builder.mutation({
       query: ({id , ...res}) => ({
@@ -22,13 +25,15 @@ export const addressApi = createApi({
         method: "PUT",
         body: res,
       }),
+      invalidatesTags: ["Address"],
     }),
     deleteAddress : builder.mutation({
       query: (id) => ({
         url: `delete-address/${id}`,
         method: "DELETE",
       }),
-    })
+      invalidatesTags: ["Address"],
+    }),
   }),
 });
 
