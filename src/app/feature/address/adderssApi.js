@@ -13,7 +13,10 @@ export const addressApi = createApi({
         body, // The address data
       }),
     }),
+    getUserAddress: builder.query({
+      query: (id) => `get-single-address/${id}`,
+    }),
   }),
 });
 
-export const { useAddAddressMutation } = addressApi;
+export const { useAddAddressMutation , useGetUserAddressQuery} = addressApi;
