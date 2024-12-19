@@ -14,7 +14,7 @@ function App() {
     <>
      { path || <Header />}
       <Outlet />
-      <CartMobileOnly />
+      {location.pathname !== '/checkOut' &&  <CartMobileOnly /> }
       {path || <Footer /> }
     </>
   )
