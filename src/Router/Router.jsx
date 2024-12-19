@@ -20,6 +20,7 @@ import MyOrder from '@/page/myInformations/MyOrder';
 import SearchPage from '@/page/search/SearchPage';
 import EditeProducAdmin from '@/components/common/EditeProducAdmin';
 import {createBrowserRouter} from 'react-router-dom'
+import CheckOut from '@/components/common/CheckOut';
 
 
 
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
         {
           path: "/resrt-password",
           element: <ResetPassword />,
+        },
+        {
+          path: "checkOut",
+          element: <CheckOut />,
         },
         
         {
