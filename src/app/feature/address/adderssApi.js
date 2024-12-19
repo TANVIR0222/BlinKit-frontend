@@ -16,7 +16,15 @@ export const addressApi = createApi({
     getUserAddress: builder.query({
       query: (id) => `get-single-address/${id}`,
     }),
+    updateAddress : builder.mutation({
+      query: ({id , ...res}) => ({
+        url: `update-address/${id}`,
+        method: "PUT",
+        body: res,
+      }),
+    }),
+   
   }),
 });
 
-export const { useAddAddressMutation , useGetUserAddressQuery} = addressApi;
+export const { useAddAddressMutation , useGetUserAddressQuery , useUpdateAddressMutation } = addressApi;
