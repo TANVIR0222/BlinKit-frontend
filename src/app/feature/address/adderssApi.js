@@ -23,8 +23,13 @@ export const addressApi = createApi({
         body: res,
       }),
     }),
-   
+    deleteAddress : builder.mutation({
+      query: (id) => ({
+        url: `delete-address/${id}`,
+        method: "DELETE",
+      }),
+    })
   }),
 });
 
-export const { useAddAddressMutation , useGetUserAddressQuery , useUpdateAddressMutation } = addressApi;
+export const { useAddAddressMutation , useGetUserAddressQuery , useUpdateAddressMutation , useDeleteAddressMutation} = addressApi;
