@@ -9,7 +9,9 @@ const addressSlice = createSlice({
     initialState : initialValue,
     reducers : {
         handleAddAddress : (state,action)=>{
-            state.addressList = action.payload            
+            state.addressList = [...action.payload ]
+            console.log(state.addressList);
+                      
         }
     }
 })
