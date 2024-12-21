@@ -11,6 +11,7 @@ import { cartApi } from './feature/cart/cartApi'
 import  cartReducer  from './feature/cart/cartSlice'
 import  addressReducer  from './feature/address/addressSlice'
 import { addressApi } from './feature/address/adderssApi'
+import { orderApi } from './feature/order/OrderApi'
 
 export const store = configureStore({
   reducer: {
@@ -25,10 +26,11 @@ export const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
     [addressApi.reducerPath]: addressApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
   },
   
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware,productApi.middleware,cartApi.middleware , addressApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware,categoryApi.middleware,imageApi.middleware,subCategoryApi.middleware,productApi.middleware,cartApi.middleware , addressApi.middleware , orderApi.middleware),
 })
 
 setupListeners(store.dispatch)
