@@ -1,28 +1,90 @@
 import useCartTotal from "@/Hooks/useCartTotal";
 import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AddAddress from "./AddAddress";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetUserAddressQuery } from "@/app/feature/address/adderssApi";
 import useUser from "@/Hooks/useUser";
+import { useCashOnDeliveryMutation, useOnlinePaymentMutation } from "@/app/feature/order/OrderApi";
+import toast from "react-hot-toast";
+import { clearCart } from "@/app/feature/cart/cartSlice";
+// stripe 
+import {loadStripe} from '@stripe/stripe-js';
 
 const CheckOut = () => {
     const [totalQty, totalPrice,totalDiscountedPrice, cartItem] = useCartTotal();
     const [openAddress, setOpenAddress] = useState(false)
     const [user] = useUser();
-
+    const {cart} = useSelector(state => state.cart)
+    const navigate = useNavigate();
     
-    const {data: addresses, isLoading, error} = useGetUserAddressQuery(user?._id);
-
-    // const {data} = useGetUserAddressQuery();
+    useEffect(() => {
+      cartItem
+    }, [cartItem]);
     
+    const {data: addresses, isLoading, error} = useGetUserAddressQuery(user?._id);    
     
     const [selectAddress, setSelectAddress] = useState(0)
-        console.log(selectAddress);
+    const { data: address, isSuccess, isError } = useGetUserAddressQuery(user?._id);
+    const dispatch = useDispatch();
 
+    // Get the selected address
+    const selectedAddress = address?.data?.[selectAddress];
+
+  
+  // list_items ,subTotalAmt , totalAmt , addressId
     const locations = useLocation()
-    // console.log(locations);
+
+    const [cashOnDelivery] = useCashOnDeliveryMutation();
+    const [onlinePayment] = useOnlinePaymentMutation();
+
+
+    const handleCashOnDelivery = async() =>{
+      
+      try {
+
+        const data  = {
+          list_items : cart,
+          addressId: selectedAddress?._id,
+          subTotalAmt: totalPrice,
+          totalAmt: totalPrice,
+        }
+      
+        const {success} = await cashOnDelivery({...data , id: user?._id} ).unwrap();
+        if(success){
+          toast.success("Address Added Successfully")
+          navigate('/success');
+          dispatch(clearCart())
+
+        }
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    const handleOnlinePayment = async() =>{
+      
+      try {
+        toast.loading();
+        const stripePublicKey = import.meta.env.VITE_STRIPE_KEY;
+        const stripePromise = await loadStripe(stripePublicKey);
+
+        const data  = {
+          list_items : cart,
+          addressId: selectedAddress?._id,
+          subTotalAmt: totalPrice,
+          totalAmt: totalDiscountedPrice,
+        }
+      
+        const res  = await onlinePayment({...data , id: user?._id} ).unwrap();
+        await stripePromise.redirectToCheckout({sessionId: res.id});
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
     
     return (
         <div>
@@ -35,7 +97,7 @@ const CheckOut = () => {
             {
               addresses?.data?.map((address, index) => {
                 return (
-                  <label htmlFor={"address" + index} className={!address.status && "hidden"}>
+                  <label key={index} htmlFor={"address" + index} className={!address.status && "hidden"}>
                     <div className='border rounded p-3 flex gap-3 hover:bg-blue-50'>
                       <div>
                         <input id={"address" + index} type='radio' value={index} onChange={(e) => setSelectAddress(e.target.value)} name='address' />
@@ -84,9 +146,8 @@ const CheckOut = () => {
             </div>
           </div>
           <div className='w-full flex flex-col gap-4'>
-            <button className='py-2 px-4 bg-green-600 hover:bg-green-700 rounded text-white font-semibold' >Online Payment</button>
-
-            <button className='py-2 px-4 border-2 border-green-600 font-semibold text-green-600 hover:bg-green-600 hover:text-white'>Cash on Delivery</button>
+            <button onClick={handleOnlinePayment} className='py-2 px-4 bg-green-600 hover:bg-green-700 rounded text-white font-semibold' >Online Payment</button>
+            <button onClick={handleCashOnDelivery} className='py-2 px-4 border-2 border-green-600 font-semibold text-green-600 hover:bg-green-600 hover:text-white'>Cash on Delivery</button>
           </div>
         </div>
       </div>

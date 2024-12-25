@@ -21,6 +21,8 @@ import SearchPage from '@/page/search/SearchPage';
 import EditeProducAdmin from '@/components/common/EditeProducAdmin';
 import {createBrowserRouter} from 'react-router-dom'
 import CheckOut from '@/components/common/CheckOut';
+import Success from '@/components/common/Success';
+import Cancle from '@/components/common/Cancle';
 
 
 
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
         {
           path: "checkOut",
           element: <CheckOut />,
+        },
+        {
+          path: "success",
+          element: <Success />,
+        },
+        {
+          path: "cancel",
+          element: <Cancle />,
         },
         
         {

@@ -6,10 +6,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import AddToCartButton from "./AddToCartButton";
 import { DisplayPriceInBDT } from "@/utils/DisplayPriceInBDT";
 import { Helmet } from "react-helmet";
+import { pricewithDiscount } from "@/utils/priceWithDiscount";
 const ProductDisplayPage = () => {
   const { id } = useParams();
 
   const { data, isLoading } = useGetSingleProductByIdQuery(id);
+  console.log(data?.discount);
+  
+
 
   return isLoading ? (
     <Loading />
@@ -60,13 +64,13 @@ const ProductDisplayPage = () => {
           <div className="flex items-center gap-2 lg:gap-4 my-1">
             <div className="border border-green-600 px-4 py-2 rounded bg-green-50 w-fit">
               <p className="font-semibold text-lg lg:text-xl">
-                { DisplayPriceInBDT(data?.price) } 
+                {data?.discount === 0 ? DisplayPriceInBDT(data?.price)  :  pricewithDiscount(DisplayPriceInBDT(data?.price , data?.discount))}
               </p>
             </div>
 
             
             {data?.discount && (
-              <p className="line-through">{DisplayPriceInBDT(data?.discount)}</p>
+              <p className="line-through">{ DisplayPriceInBDT(data?.price) } </p>
             )}
             {data?.discount && (
               <p className="font-bold text-green-600 lg:text-2xl">

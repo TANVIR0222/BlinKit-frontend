@@ -1,17 +1,13 @@
 import { useAddAddressMutation } from "@/app/feature/address/adderssApi";
-import { handleAddAddress } from "@/app/feature/address/addressSlice";
 import useUser from "@/Hooks/useUser";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
-import { useDispatch } from "react-redux";
 
 const AddAddress = ({ close }) => {
   const { register, handleSubmit, reset } = useForm();
-  const dispath = useDispatch();
 
   const [user] = useUser()
-  
   
   const [addAddress , {isLoading}] = useAddAddressMutation();
 
@@ -27,10 +23,7 @@ const AddAddress = ({ close }) => {
     };
 
     try {
-      const {success , data} = await addAddress({...newAddress, id: user?._id }).unwrap();
-      
-      dispath(handleAddAddress(data))
-      
+      const {success } = await addAddress({...newAddress, id: user?._id }).unwrap();      
       if(success){
         toast.success("Address Added Successfully")
         close();

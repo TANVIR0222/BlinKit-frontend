@@ -10,7 +10,7 @@ import {
 import { TiArrowSortedDown } from "react-icons/ti";
 import { GoLinkExternal } from "react-icons/go";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserLogoutMutation } from "@/app/feature/auth/authApi";
 import { useDispatch } from "react-redux";
@@ -87,10 +87,10 @@ const UserMenu = () => {
           {
               isAdmin(userData?.role) && (
                 <>
-                <Link to={'category'}><DropdownMenuRadioItem >Category</DropdownMenuRadioItem></Link>
-                <Link to={'sub-category'}><DropdownMenuRadioItem >Sub Category</DropdownMenuRadioItem></Link>
-                <Link to={'uploade-product'}><DropdownMenuRadioItem >Uploade Product </DropdownMenuRadioItem></Link>
-                <Link to={'product'}><DropdownMenuRadioItem >product</DropdownMenuRadioItem></Link>
+                <Link to={'dashboard/category'}><DropdownMenuRadioItem >Category</DropdownMenuRadioItem></Link>
+                <Link to={'dashboard/sub-category'}><DropdownMenuRadioItem >Sub Category</DropdownMenuRadioItem></Link>
+                <Link to={'dashboard/uploade-product'}><DropdownMenuRadioItem >Uploade Product </DropdownMenuRadioItem></Link>
+                <Link to={'dashboard/product'}><DropdownMenuRadioItem >product</DropdownMenuRadioItem></Link>
                 </>
               )
             }
