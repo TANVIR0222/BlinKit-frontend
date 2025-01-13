@@ -1,6 +1,29 @@
 # Blinkeyit Clone 
 The Online Food Ordering System is a modern web application that simplifies the process of ordering food online. It provides an intuitive interface for users to browse restaurant menus, add items to their cart, and place orders seamlessly.
 
+food-ordering-app/
+│
+├── public/              # Public assets (favicon, index.html, etc.)
+├── src/
+│   ├── components/      # Reusable React components (e.g., Navbar, Footer)
+│   ├── pages/           # Page components (e.g., Home, Cart, Admin)
+│   ├── services/        # API service functions
+│   ├── utils/           # Utility functions
+│   ├── App.js           # Main app entry point
+│   └── index.js         # React DOM entry point
+│
+├── backend/             # Backend server files (if applicable)
+│   ├── models/          # MongoDB schemas
+│   ├── routes/          # API routes
+│   ├── controllers/     # Request handlers
+│   ├── server.js        # Backend entry point
+│
+├── package.json         # Dependencies and scripts
+
+
+
+
+
 Features : 
 User Authentication: Signup, login, and logout with secure JWT authentication.
 
