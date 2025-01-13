@@ -8,8 +8,7 @@ const HomePage = () => {
   const { data: responseData , isLoading:allCategortLoading} = useGetAllCategoryQuery();
   
   
-
-  return (
+  return allCategortLoading ? <LoadingSpinner /> : (
     <section className="bg-white ">
        <Helmet>
           <title>Home Page || Blinkeyit</title>
@@ -34,7 +33,7 @@ const HomePage = () => {
       </div>
 
       <div className="container mx-auto px-4 my-2 grid grid-cols-4 sm:grid-cols-2  md:grid-cols-8 lg:grid-cols-10 gap-6">
-        {allCategortLoading? <LoadingSpinner />  : responseData?.categorys?.map((category) => (
+        { responseData?.categorys?.map((category) => (
           <Link
             key={category._id}
             className="border rounded-lg shadow-md hover:shadow-lg transition-shadow p-1"
