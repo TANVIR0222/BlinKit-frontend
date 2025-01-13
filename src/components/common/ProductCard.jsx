@@ -24,14 +24,7 @@ const ProductCard = ({ product }) => {
           />
         </div>
 
-        <div
-          onClick={handleShow} 
-          class="absolute top-0 right-0 h-full w-10  text-white flex items-center justify-center 
-              transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"
-        >
-          <ProductViewDilog product={product} />
-
-        </div>
+       
       </div>
       <div className="flex items-center gap-1">
         <div className="rounded text-xs w-fit p-[1px] px-2 text-green-600 bg-green-50">
