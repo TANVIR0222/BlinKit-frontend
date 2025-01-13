@@ -16,12 +16,17 @@ Responsive Design: Fully optimized for mobile and desktop devices.
 
 
 Frontend : 
+
 React.js
+
 Redux (for state management)
+
 React Router (for navigation)
+
 Tailwind CSS or Shadcn Ui (for styling)
 
 Payment Integration : 
+
 Stripe or PayPal API for secure payments
 
 Backend :
