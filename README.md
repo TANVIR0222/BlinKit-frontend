@@ -25,6 +25,7 @@ Fully optimized for both mobile and desktop devices for a consistent user experi
 
 
 Frontend: 
+
 React.js: Core framework for building the user interface.
 
 Redux: State management for efficient data handling across components.
