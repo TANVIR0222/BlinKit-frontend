@@ -20,7 +20,7 @@ Seamless order placement functionality with real-time order tracking.
 5. Admin Panel -
 A dedicated panel to manage menu items, view customer orders, and update order statuses.
 
-6. Responsive Design ->
+6. Responsive Design -
 Fully optimized for both mobile and desktop devices for a consistent user experience.
 
 
