@@ -3,56 +3,17 @@ The Online Food Ordering System is a modern web application that simplifies the 
 
 food-ordering-app/
 │
-├── public/              # Public assets (favicon, index.html, etc.)
-├── src/
-│   ├── components/      # Reusable React components (e.g., Navbar, Footer)
-│   ├── pages/           # Page components (e.g., Home, Cart, Admin)
-│   ├── services/        # API service functions
-│   ├── utils/           # Utility functions
-│   ├── App.js           # Main app entry point
-│   └── index.js         # React DOM entry point
+├── public/             # Public assets (e.g., favicon, index.html) /n
+├── src/                # Frontend source files /n
+│   ├── components/     # Reusable React components (e.g., Navbar, Footer) /n
+│   ├── pages/          # Page components (e.g., Home, Cart, Admin Panel)/n
+│   ├── services/       # API service functions /n
+│   ├── utils/          # Utility functions /n
+│   ├── App.js          # Main application entry point /n
+│   └── index.js        # React DOM entry point /n
 │
-├── backend/             # Backend server files (if applicable)
-│   ├── models/          # MongoDB schemas
-│   ├── routes/          # API routes
-│   ├── controllers/     # Request handlers
-│   ├── server.js        # Backend entry point
 │
-├── package.json         # Dependencies and scripts
+├── package.json        # Project dependencies and scripts /n
+└── README.md           # Project documentation /n
 
 
-
-
-
-Features : 
-User Authentication: Signup, login, and logout with secure JWT authentication.
-
-Restaurant Menu Browsing: Dynamic menu listings with categories, item descriptions, and pricing.
-
-Cart Management: Add, remove, and update items in a shopping cart.
-
-Order Placement: Place orders and track their status in real-time.
-
-Admin Panel: Manage menu items, view orders, and update order statuses.
-
-Responsive Design: Fully optimized for mobile and desktop devices.
-
-
-Frontend : 
-
-React.js
-
-Redux (for state management)
-
-React Router (for navigation)
-
-Tailwind CSS or Shadcn Ui (for styling)
-
-Payment Integration : 
-
-Stripe or PayPal API for secure payments
-
-Backend :
-Node.js
-Express.js
-MongoDB (for storing user and order data)
