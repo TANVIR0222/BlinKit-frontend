@@ -1,5 +1,5 @@
 # Blinkeyit Clone 
-=====================
+
 The Online Food Ordering System is a modern web application that simplifies the process of ordering food online. It provides an intuitive interface for users to browse restaurant menus, add items to their cart, and place orders seamlessly.
 
 ### Features
@@ -26,11 +26,15 @@ Fully optimized for both mobile and desktop devices for a consistent user experi
 
 Frontend: 
 React.js: Core framework for building the user interface.
+
 Redux: State management for efficient data handling across components.
+
 React Router: For seamless navigation and routing between pages.
+
 Tailwind CSS or Shadcn UI: Modern and flexible styling options.
 
 ===============
 
-Payment Integration -> 
+Payment Integration
+
 Stripe or PayPal API: Secure payment gateway for processing transactions.
