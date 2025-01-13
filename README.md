@@ -5,19 +5,19 @@ The Online Food Ordering System is a modern web application that simplifies the 
 ### Features
 Core Features
 
-1. User Authentication ->
+1. User Authentication -
 Secure signup, login, and logout functionality using JWT (JSON Web Tokens).
 
-2. Restaurant Menu Browsing ->
+2. Restaurant Menu Browsing -
 Dynamic menu listings with categories, detailed descriptions, and pricing information.
 
-3. Cart Management ->
+3. Cart Management -
 Add, remove, and update items in a shopping cart with a real-time user-friendly interface.
 
-4. Order Placement ->
+4. Order Placement -
 Seamless order placement functionality with real-time order tracking.
 
-5. Admin Panel ->
+5. Admin Panel -
 A dedicated panel to manage menu items, view customer orders, and update order statuses.
 
 6. Responsive Design ->
