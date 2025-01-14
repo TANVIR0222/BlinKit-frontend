@@ -12,6 +12,7 @@ const AddToCartButton = ({data}) => {
     const [qty, setQty] = useState()
     const [isAvailableCart, setIsAvailableCart] = useState(false)
     const [cartItemDetails,setCartItemsDetails] = useState()   
+    const navigate = useNavigate();  
 
 
     //checking this item in cart or not
